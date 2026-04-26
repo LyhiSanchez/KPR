@@ -22,15 +22,36 @@
                         sans: ['Outfit', 'sans-serif']
                     },
                     colors: {
-                        // ==========================================
-                        // GANTI KODE WARNA UTAMA WEBSITE DI SINI
-                        // ==========================================
                         brand: {
                             bg: '#120F0E', // Warna Background Utama
                             text: '#F5E6D3', // Warna Teks Utama
                             accent: '#D97A35', // Warna Aksen (Karamel)
                             surface: '#1A1614', // Warna Background Kartu
-                            border: '#2A2421' // Warna Garis Batas
+                            border: 'rgba(245, 230, 211, 0.08)' // Border Kaca
+                        },
+                        pastel: {
+                            brown: '#BC815F',
+                            beige: '#E6D3B3',
+                            sage: '#A8B5A2'
+                        }
+                    },
+                    animation: {
+                        blob: "blob 15s infinite alternate",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": {
+                                transform: "translate(0px, 0px) scale(1)"
+                            },
+                            "33%": {
+                                transform: "translate(40px, -60px) scale(1.15)"
+                            },
+                            "66%": {
+                                transform: "translate(-30px, 30px) scale(0.85)"
+                            },
+                            "100%": {
+                                transform: "translate(0px, 0px) scale(1)"
+                            },
                         }
                     }
                 }
@@ -50,15 +71,14 @@
         }
         
          ::selection {
-            background-color: #D97A35;
-            color: #120F0E;
+            background-color: rgba(217, 122, 53, 0.5);
+            color: #F5E6D3;
         }
         
          ::-webkit-scrollbar {
             width: 0px;
             background: transparent;
         }
-        /* Class untuk sembunyikan scrollbar di modal tapi tetap bisa scroll */
         
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
@@ -67,6 +87,40 @@
         .scrollbar-hide {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+        /* ========================================== */
+        /* APPLE LIQUID GLASS UTILITIES               */
+        /* ========================================== */
+        
+        .liquid-glass {
+            background: rgba(26, 22, 20, 0.3);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+        }
+        
+        .liquid-glass-strong {
+            background: rgba(18, 15, 14, 0.5);
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .liquid-glass-light {
+            background: rgba(245, 230, 211, 0.05);
+            backdrop-filter: blur(20px) saturate(150%);
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
+            border: 1px solid rgba(245, 230, 211, 0.1);
+        }
+        
+        .liquid-glass-accent {
+            background: rgba(217, 122, 53, 0.15);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(217, 122, 53, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(217, 122, 53, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
         }
         /* Modal Transitions */
         
@@ -99,70 +153,102 @@
         /* Tab aktif styling */
         
         .tab-active {
+            background-color: rgba(217, 122, 53, 0.9) !important;
             color: #120F0E !important;
-            background-color: #D97A35 !important;
-            border-color: #D97A35 !important;
-            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(217, 122, 53, 0.3);
+            border-color: transparent !important;
+            font-weight: 700;
         }
         /* Glow effects for text */
         
         .text-glow {
-            text-shadow: 0 0 20px rgba(217, 122, 53, 0.3);
+            text-shadow: 0 0 30px rgba(217, 122, 53, 0.4);
+        }
+        /* Animasi penundaan blob ambient */
+        
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        
+        .animation-delay-4000 {
+            animation-delay: 4s;
         }
     </style>
 </head>
 
 <body class="antialiased text-brand-text text-base sm:text-lg">
 
-    <!-- PRELOADER (Layar Loading Awal) -->
-    <div id="preloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-brand-bg transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-0">
+    <!-- AMBIENT BACKGROUND GLOWS (Pastel Colors) -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <!-- Brown Pastel -->
+        <div class="absolute top-[-10%] left-[-10%] w-[55vw] h-[55vw] bg-pastel-brown rounded-full blur-[100px] md:blur-[140px] animate-blob opacity-[0.35]"></div>
+        <!-- Light Beige -->
+        <div class="absolute bottom-[-10%] right-[-10%] w-[45vw] h-[45vw] bg-pastel-beige rounded-full blur-[120px] md:blur-[160px] animate-blob animation-delay-2000 opacity-[0.35]"></div>
+        <!-- Muted Sage Green -->
+        <div class="absolute top-[30%] left-[50%] w-[40vw] h-[40vw] bg-pastel-sage rounded-full blur-[100px] md:blur-[130px] animate-blob animation-delay-4000 opacity-[0.35]"></div>
+    </div>
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center liquid-glass-strong transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-0">
         <div class="overflow-hidden">
-            <h1 class="text-5xl md:text-8xl font-black tracking-tighter text-brand-text animate-pulse">KPR.</h1>
+            <h1 class="text-5xl md:text-8xl font-black tracking-tighter text-brand-text animate-pulse drop-shadow-2xl">KPR.</h1>
         </div>
-        <div class="mt-8 flex w-64 flex-col items-center gap-3">
-            <div class="h-[2px] w-full overflow-hidden bg-brand-border rounded-full">
-                <div id="progress-bar" class="h-full bg-brand-accent transition-all duration-300 ease-out" style="width: 0%"></div>
+        <div class="mt-8 flex w-64 flex-col items-center gap-4">
+            <div class="h-1 w-full overflow-hidden liquid-glass rounded-full p-[1px]">
+                <div id="progress-bar" class="h-full bg-brand-accent rounded-full transition-all duration-300 ease-out shadow-[0_0_10px_#D97A35]" style="width: 0%"></div>
             </div>
-            <span id="progress-text" class="text-xs tracking-widest text-brand-text/50 font-medium">0% MENYIAPKAN SEDUHAN</span>
+            <span id="progress-text" class="text-xs tracking-widest text-brand-text/50 font-medium">Menyeduh Kopi</span>
         </div>
     </div>
 
-    <!-- NAVBAR (Hanya Logo Kiri) -->
-    <nav class="fixed top-0 left-0 w-full z-50 flex items-center p-6 md:px-10 md:py-8 mix-blend-difference text-white pointer-events-none">
-        <div class="text-2xl md:text-3xl font-black tracking-tighter uppercase pointer-events-auto">KPR.</div>
+    <!-- NAVBAR (Apple Glass Pill - Posisi Kiri) -->
+    <nav class="fixed top-6 left-6 md:left-10 z-50 flex items-center px-8 py-3 rounded-full liquid-glass transition-all duration-500 hover:bg-white/5 border border-white/10 shadow-2xl">
+        <div class="text-xl md:text-2xl font-black tracking-tighter uppercase cursor-pointer">KPR.</div>
     </nav>
 
     <!-- HERO SCROLLYTELLING -->
-    <div id="hero-container" class="relative w-full h-[350vh] bg-brand-bg">
+    <div id="hero-container" class="relative z-10 w-full h-[350vh]">
         <div class="sticky top-0 w-full h-screen overflow-hidden">
             <div id="canvas-wrapper" class="absolute inset-0 w-full h-full transition-opacity duration-500">
-                <canvas id="hero-canvas" class="absolute inset-0 w-full h-full opacity-60"></canvas>
+                <!-- Mix-blend dilonggarkan agar warna pastel tetap hidup -->
+                <canvas id="hero-canvas" class="absolute inset-0 w-full h-full opacity-50 mix-blend-screen"></canvas>
             </div>
-            <!-- Vignette shadow -->
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#120F0E_100%)] pointer-events-none"></div>
 
-            <!-- Bottom Fade Gradient (Fix Cinematic Fade) -->
+            <!-- Vignette shadow yang lebih soft agar pastel terlihat -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#120F0E_100%)] pointer-events-none opacity-60"></div>
+
+            <!-- Bottom Fade Gradient -->
             <div class="absolute bottom-0 left-0 w-full h-[40vh] bg-gradient-to-b from-transparent to-[#120F0E] pointer-events-none"></div>
 
-            <div id="fallback-badge" class="hidden absolute bottom-20 left-4 text-[9px] uppercase tracking-widest text-brand-text/30 border border-brand-border px-3 py-1.5 rounded-full z-[40]">
+            <div id="fallback-badge" class="hidden absolute bottom-20 left-4 text-[9px] uppercase tracking-widest text-brand-text/30 liquid-glass px-3 py-1.5 rounded-full z-[40]">
                 Mode Fallback Aktif
             </div>
 
             <div class="absolute inset-0 z-10 pointer-events-none flex flex-col justify-center items-center px-6">
+                <!-- Overlay 1 -->
                 <div id="overlay-1" class="absolute flex flex-col items-center text-center transition-opacity duration-100">
                     <h1 class="text-7xl md:text-[14vw] font-black tracking-tighter leading-none mb-4 drop-shadow-2xl">KPR.</h1>
-                    <p class="text-sm md:text-2xl font-medium tracking-[0.3em] uppercase text-brand-accent">Koepi Podjok Raffa</p>
+                    <div class="liquid-glass-light px-6 py-2 rounded-full mt-2">
+                        <p class="text-sm md:text-xl font-medium tracking-[0.3em] uppercase text-brand-accent">Koepi Podjok Raffa</p>
+                    </div>
                 </div>
+                <!-- Overlay 2 -->
                 <div id="overlay-2" class="absolute md:left-[10%] w-full max-w-xl transition-opacity duration-100 opacity-0 transform translate-y-10 text-center md:text-left">
-                    <h2 class="text-4xl md:text-7xl font-bold tracking-tighter mb-4 leading-[1.1]">Rasa dari <br/><span class="text-brand-accent italic font-light">Sebuah Sudut.</span></h2>
-                    <p class="text-base md:text-xl font-light text-brand-text/70 px-4 md:px-0 leading-relaxed">Hadir menemani setiap obrolan hangat, tawa, dan cerita yang tak pernah usai. Ruang kecil dengan memori besar.</p>
+                    <div class="md:liquid-glass md:p-10 md:rounded-[2.5rem] md:border-white/5">
+                        <h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-4 leading-[1.1]">Bahan yang <br/><span class="text-brand-accent italic font-light">Premium.</span></h2>
+                        <p class="text-base md:text-xl font-light text-brand-text/70 px-4 md:px-0 leading-relaxed"></p>
+                    </div>
                 </div>
+                <!-- Overlay 3 -->
                 <div id="overlay-3" class="absolute md:right-[10%] w-full max-w-xl transition-opacity duration-100 opacity-0 transform translate-y-10 text-center md:text-right">
-                    <h2 class="text-4xl md:text-7xl font-bold tracking-tighter mb-4 leading-[1.1]">Racikan <br/><span class="text-brand-accent italic font-light">Tulus.</span></h2>
-                    <p class="text-base md:text-xl font-light text-brand-text/70 px-4 md:px-0 leading-relaxed">Lebih dari sekadar kopi, ini adalah dedikasi kami untuk menyajikan seduhan terbaik secara konsisten setiap hari.</p>
+                    <div class="md:liquid-glass md:p-10 md:rounded-[2.5rem] md:border-white/5">
+                        <h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-4 leading-[1.1]">Racikan <br/><span class="text-brand-accent italic font-light">Autentik.</span></h2>
+                        <p class="text-base md:text-xl font-light text-brand-text/70 px-4 md:px-0 leading-relaxed"></p>
+                    </div>
                 </div>
+                <!-- Overlay 4 -->
                 <div id="overlay-4" class="absolute flex flex-col items-center transition-opacity duration-100 opacity-0">
-                    <h2 class="text-5xl md:text-8xl font-black tracking-tighter mb-8 text-center text-glow">Mulai Ceritamu.</h2>
+                    <h2 class="text-5xl md:text-8xl font-black tracking-tighter mb-8 text-center text-glow">Nikmati Sekarang</h2>
                 </div>
             </div>
         </div>
@@ -171,140 +257,141 @@
     <!-- MAIN CONTENT -->
     <div class="relative z-20 w-full -mt-[100vh]">
 
-        <!-- Spacer 40vh -->
+        <!-- Spacer -->
         <div class="h-[40vh] w-full pointer-events-none"></div>
 
-        <!-- 1. FILOSOFI -->
-        <section id="filosofi-section" class="w-full bg-brand-bg/90 backdrop-blur-xl border-t border-brand-border">
-            <div class="py-24 px-6 md:px-20 max-w-7xl mx-auto flex flex-col justify-center min-h-[50vh]">
-                <p class="text-xs md:text-sm tracking-widest text-brand-accent uppercase mb-8 font-semibold flex items-center gap-4">
-                    <span class="w-8 h-[1px] bg-brand-accent"></span> Cerita Kami
-                </p>
-                <div id="reveal-text-container" class="flex flex-wrap text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1]">
-                    <!-- Javascript will inject the text here. -->
+        <!-- 1. FILOSOFI (Floating Glass Panel) -->
+        <section id="filosofi-section" class="w-full px-4 md:px-10 pb-20">
+            <div class="liquid-glass py-24 px-6 md:px-20 max-w-7xl mx-auto rounded-[3rem] md:rounded-[4rem] border border-white/5 relative overflow-hidden">
+                <!-- Inner glow -->
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent"></div>
+
+                <div class="flex flex-col justify-center min-h-[40vh] relative z-10">
+                    <p class="text-xs md:text-sm tracking-widest text-brand-accent uppercase mb-8 font-semibold flex items-center gap-4">
+                        <span class="w-8 h-[1px] bg-brand-accent"></span> Filosofi Kami
+                    </p>
+                    <div id="reveal-text-container" class="flex flex-wrap text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.15]">
+                        <!-- Javascript will inject the text here. -->
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Solid Background untuk sisa konten -->
-        <div class="w-full bg-brand-bg">
+        <div class="w-full">
             <!-- 2. KATALOG MENU -->
             <section id="katalog-menu" class="py-20 md:py-32 relative z-30">
                 <div class="max-w-6xl mx-auto px-4 md:px-6">
                     <!-- HEADER KATALOG -->
-                    <div class="flex flex-col items-center text-center mb-12 md:mb-16 gap-8 w-full">
+                    <div class="flex flex-col items-center text-center mb-16 gap-10 w-full">
                         <div>
                             <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-4">Katalog<span class="text-brand-accent">.</span></h2>
-                            <p class="text-sm md:text-base text-brand-text/50 max-w-sm mx-auto">Pilih racikan favoritmu untuk menemani hari. Diseduh sepenuh hati.</p>
+                            <p class="text-sm md:text-base text-brand-text/60 max-w-sm mx-auto font-light">Pick Your Favorite</p>
                         </div>
-                        <!-- Tabs Kategori Menu -->
-                        <div class="flex overflow-x-auto justify-center gap-2 bg-brand-surface p-1.5 rounded-full border border-brand-border max-w-full scrollbar-hide">
-                            <button class="menu-tab tab-active whitespace-nowrap px-6 md:px-8 py-3 rounded-full text-sm font-semibold transition-all w-full md:w-auto" data-target="coffee">Coffee</button>
-                            <button class="menu-tab whitespace-nowrap px-6 md:px-8 py-3 rounded-full text-brand-text/50 text-sm font-medium transition-all w-full md:w-auto hover:text-brand-text" data-target="non-coffee">Non-Coffee</button>
-                            <button class="menu-tab whitespace-nowrap px-6 md:px-8 py-3 rounded-full text-brand-text/50 text-sm font-medium transition-all w-full md:w-auto hover:text-brand-text" data-target="snacks">Snacks</button>
+                        <!-- Tabs Kategori Menu (Glass Pill) -->
+                        <div class="flex overflow-x-auto justify-center gap-2 liquid-glass p-2 rounded-full max-w-full scrollbar-hide shadow-2xl">
+                            <button class="menu-tab tab-active whitespace-nowrap px-8 py-3.5 rounded-full text-sm transition-all duration-300 w-full md:w-auto" data-target="coffee">Coffee</button>
+                            <button class="menu-tab whitespace-nowrap px-8 py-3.5 rounded-full text-brand-text/60 text-sm transition-all duration-300 w-full md:w-auto hover:bg-white/5 hover:text-brand-text" data-target="non-coffee">Non-Coffee</button>
+                            <button class="menu-tab whitespace-nowrap px-8 py-3.5 rounded-full text-brand-text/60 text-sm transition-all duration-300 w-full md:w-auto hover:bg-white/5 hover:text-brand-text" data-target="snacks">Snacks</button>
                         </div>
                     </div>
 
-                    <!-- Konten Menu Grid Card (2 KOLOM) -->
+                    <!-- Konten Menu Grid Card -->
                     <div id="menu-container" class="min-h-[400px]"></div>
                 </div>
             </section>
 
-            <!-- 3. REVIEW / TESTIMONIAL (Larger Comic Style + Stars) -->
-            <section class="w-full py-32 bg-brand-surface border-t border-b border-brand-border overflow-hidden relative">
-
-                <div class="text-center mb-20 px-6 flex flex-col items-center">
+            <!-- 3. REVIEW / TESTIMONIAL (Apple iMessage Pastel Style) -->
+            <section class="w-full py-32 overflow-hidden relative">
+                <div class="text-center mb-20 px-6 flex flex-col items-center relative z-10">
                     <p class="text-xs md:text-sm tracking-widest text-brand-accent uppercase font-semibold flex items-center gap-4 mb-4">
                         <span class="w-8 h-[1px] bg-brand-accent"></span> Kata Mereka
                         <span class="w-8 h-[1px] bg-brand-accent"></span>
                     </p>
-                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter">Cerita di Sudut KPR</h2>
+                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter">Cerita di Sudut KPR</h2>
                 </div>
 
                 <!-- Chat Bubble Slider -->
-                <div class="w-full max-w-4xl mx-auto px-6 overflow-hidden">
+                <div class="w-full max-w-4xl mx-auto px-6 overflow-hidden relative z-10">
+                    <div id="chat-slider" class="flex transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
 
-                    <div id="chat-slider" class="flex transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]">
-
-                        <!-- Bubble 1 -->
-                        <div class="min-w-full flex justify-center">
-                            <div class="bg-[#D97A35] text-[#120F0E] px-10 py-10 rounded-[40px] max-w-xl shadow-2xl relative w-full">
-                                <!-- Stars -->
-                                <div class="flex gap-1 mb-5">
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <!-- Bubble 1 (Light Beige Pastel) -->
+                        <div class="min-w-full flex justify-center p-4">
+                            <!-- Solid bright pastel color with dark text -->
+                            <div class="bg-pastel-beige text-[#120F0E] px-10 py-12 rounded-[2.5rem] rounded-br-[12px] max-w-xl relative w-full transform hover:scale-[1.02] transition-transform shadow-[0_20px_40px_rgba(230,211,179,0.15)] border border-white/30">
+                                <div class="flex gap-1 mb-6 text-[#120F0E]/40">
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                                 </div>
-                                <p class="text-xl md:text-2xl font-medium leading-relaxed mb-6">
+                                <p class="text-xl md:text-3xl font-medium leading-[1.3] mb-8 text-[#120F0E]/90">
                                     “Gula aren latte-nya balance banget, manisnya pas dan kopinya tetap kerasa.”
                                 </p>
-                                <span class="text-sm font-bold uppercase opacity-80">
-                                    — Fadhilah
-                                </span>
-                                <!-- Comic Tail -->
-                                <div class="absolute bottom-[-18px] left-12 w-8 h-8 bg-[#D97A35] rotate-45"></div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-[#120F0E]/10 flex items-center justify-center font-bold text-sm">F</div>
+                                    <span class="text-sm font-bold uppercase tracking-widest text-[#120F0E]/70">Fadhilah</span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Bubble 2 -->
-                        <div class="min-w-full flex justify-center">
-                            <div class="bg-[#2A2421] text-brand-text px-10 py-10 rounded-[40px] max-w-xl shadow-2xl relative w-full">
-                                <div class="flex gap-1 mb-5 text-brand-accent">
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <!-- Bubble 2 (Muted Sage Green Pastel) -->
+                        <div class="min-w-full flex justify-center p-4">
+                            <div class="bg-pastel-sage text-[#120F0E] px-10 py-12 rounded-[2.5rem] rounded-bl-[12px] max-w-xl relative w-full transform hover:scale-[1.02] transition-transform shadow-[0_20px_40px_rgba(168,181,162,0.15)] border border-white/30">
+                                <div class="flex gap-1 mb-6">
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                                 </div>
-                                <p class="text-xl md:text-2xl font-medium leading-relaxed mb-6">
+                                <p class="text-xl md:text-3xl font-medium leading-[1.3] mb-8 text-[#120F0E]/90">
                                     “Pandan latte di sini unik, aromanya wangi tapi nggak berlebihan.”
                                 </p>
-                                <span class="text-sm font-bold uppercase text-brand-accent opacity-90">
-                                    — Dhiah
-                                </span>
-                                <div class="absolute bottom-[-18px] left-12 w-8 h-8 bg-[#2A2421] rotate-45"></div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-[#120F0E]/10 flex items-center justify-center font-bold text-sm">D</div>
+                                    <span class="text-sm font-bold uppercase tracking-widest text-[#120F0E]/70">Dhiah</span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Bubble 3 -->
-                        <div class="min-w-full flex justify-center">
-                            <div class="bg-brand-bg border border-brand-border text-brand-text px-10 py-10 rounded-[40px] max-w-xl shadow-2xl relative w-full">
-                                <div class="flex gap-1 mb-5 text-brand-accent">
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <!-- Bubble 3 (Soft Peach/Orange Pastel) -->
+                        <div class="min-w-full flex justify-center p-4">
+                            <div class="bg-[#FAD9C1] text-[#120F0E] px-10 py-12 rounded-[2.5rem] rounded-br-[12px] max-w-xl relative w-full transform hover:scale-[1.02] transition-transform shadow-[0_20px_40px_rgba(250,217,193,0.15)] border border-white/30">
+                                <div class="flex gap-1 mb-6">
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-brand-accent" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                                 </div>
-                                <p class="text-xl md:text-2xl font-medium leading-relaxed mb-6">
+                                <p class="text-xl md:text-3xl font-medium leading-[1.3] mb-8 text-[#120F0E]/90">
                                     “Americano-nya clean dan smooth, enak diminum kapan aja.”
                                 </p>
-                                <span class="text-sm font-bold uppercase text-brand-accent opacity-90">
-                                    — Hardiya
-                                </span>
-                                <div class="absolute bottom-[-18px] left-12 w-8 h-8 bg-brand-bg border-l border-b border-brand-border rotate-45"></div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-[#120F0E]/10 flex items-center justify-center font-bold text-sm">H</div>
+                                    <span class="text-sm font-bold uppercase tracking-widest text-[#120F0E]/70">Hardiya</span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Bubble 4 -->
-                        <div class="min-w-full flex justify-center">
-                            <div class="bg-[#F5E6D3] text-[#120F0E] px-10 py-10 rounded-[40px] max-w-xl shadow-2xl relative w-full">
-                                <div class="flex gap-1 mb-5 text-[#D97A35]">
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <!-- Bubble 4 (Brown Pastel) -->
+                        <div class="min-w-full flex justify-center p-4">
+                            <div class="bg-pastel-brown text-[#F5E6D3] px-10 py-12 rounded-[2.5rem] rounded-bl-[12px] max-w-xl relative w-full transform hover:scale-[1.02] transition-transform shadow-[0_20px_40px_rgba(188,129,95,0.2)] border border-white/20">
+                                <div class="flex gap-1 mb-6">
+                                    <svg class="w-5 h-5 fill-current text-[#F5E6D3]" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-[#F5E6D3]" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-[#F5E6D3]" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-[#F5E6D3]" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <svg class="w-5 h-5 fill-current text-[#F5E6D3]" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                                 </div>
-                                <p class="text-xl md:text-2xl font-medium leading-relaxed mb-6">
-                                    “Caramel latte-nya creamy dan comforting.”
+                                <p class="text-xl md:text-3xl font-medium leading-[1.3] mb-8 text-[#F5E6D3]/95">
+                                    “Caramel latte-nya creamy dan comforting banget buat nemenin kerja.”
                                 </p>
-                                <span class="text-sm font-bold uppercase opacity-80">
-                                    — Lea
-                                </span>
-                                <div class="absolute bottom-[-18px] left-12 w-8 h-8 bg-[#F5E6D3] rotate-45"></div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm">L</div>
+                                    <span class="text-sm font-bold uppercase tracking-widest text-[#F5E6D3]/80">Lea</span>
+                                </div>
                             </div>
                         </div>
 
@@ -312,24 +399,27 @@
                 </div>
             </section>
 
-            <!-- 4. CTA FOOTER -->
-            <section class="relative py-40 px-6 overflow-hidden flex flex-col items-center text-center bg-brand-accent text-brand-bg rounded-t-[40px] mt-2 shadow-[0_-20px_50px_rgba(0,0,0,0.3)]">
-                <h3 class="text-4xl md:text-7xl font-black tracking-tighter mb-6 z-10">
-                    Siap Merasakan<br><span class="italic font-light">Bedanya?</span>
+            <!-- 4. CTA FOOTER (Massive Floating Glass Panel) -->
+            <section class="relative py-40 px-6 mt-10 mb-6 mx-4 md:mx-10 rounded-[3rem] md:rounded-[4rem] overflow-hidden flex flex-col items-center text-center liquid-glass-accent shadow-[0_30px_60px_rgba(0,0,0,0.5)] border border-brand-accent/30">
+                <div class="absolute inset-0 bg-brand-accent/5 pointer-events-none"></div>
+
+                <h3 class="text-4xl md:text-7xl font-black tracking-tighter mb-6 z-10 text-white drop-shadow-2xl">
+                    Siap Merasakan<br><span class="italic font-light text-brand-accent">Bedanya?</span>
                 </h3>
 
-                <div class="text-[150px] md:text-[250px] font-black opacity-[0.07] absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none tracking-tighter leading-none translate-y-1/4 whitespace-nowrap">
-                    KPR COFFEE
+                <div class="text-[100px] md:text-[200px] font-black text-brand-accent/10 absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none tracking-tighter leading-none translate-y-1/3 whitespace-nowrap mix-blend-overlay">
+                    KPR COFFE
                 </div>
 
-                <p class="text-base md:text-xl mb-12 z-10 font-medium max-w-md">
-                    Kunjungi kami sekarang atau hubungi untuk pemesanan & kolaborasi.
+                <p class="text-base md:text-xl mb-12 z-10 font-light max-w-md text-white/80">
+                    Pesan Kopi Kami Sekarang dan Rasakan Spesialnya
                 </p>
 
-                <button id="btn-kontak" class="group z-10 bg-brand-bg text-brand-text px-10 py-5 rounded-full font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-3">
-                    <span class="tracking-widest uppercase text-sm">Hubungi KPR</span>
-                    <div class="w-8 h-8 rounded-full bg-brand-accent text-brand-bg flex items-center justify-center group-hover:rotate-45 transition-transform">
-                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                <!-- Apple-style Pill Button -->
+                <button id="btn-kontak" class="group z-10 bg-white/10 backdrop-blur-xl text-white border border-white/20 px-8 py-4 rounded-full font-bold shadow-xl hover:bg-white/20 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-4">
+                    <span class="tracking-widest uppercase text-sm">Click Me UwU</span>
+                    <div class="w-8 h-8 rounded-full bg-brand-accent text-brand-bg flex items-center justify-center group-hover:rotate-45 transition-transform shadow-[0_0_15px_#D97A35]">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                     </div>
                 </button>
             </section>
@@ -338,62 +428,63 @@
 
     <!-- MODAL: SOCIAL MEDIA KPR -->
     <div id="modal-sosmed" class="fixed inset-0 z-[100] flex items-end md:items-center justify-center pointer-events-none overlay-enter">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-md" id="modal-sosmed-bg"></div>
+        <!-- Deep Blur Background -->
+        <div class="absolute inset-0 bg-[#000000]/40 backdrop-blur-xl transition-opacity duration-500" id="modal-sosmed-bg"></div>
 
-        <!-- PENTING: data-lenis-prevent dan touch-pan-y memastikan pop-up BISA di-scroll saat di HP -->
-        <div class="bg-brand-surface border-t md:border border-brand-border p-8 pb-12 md:pb-8 rounded-t-3xl md:rounded-3xl w-full max-w-sm relative z-10 modal-exit shadow-2xl max-h-[85vh] overflow-y-auto scrollbar-hide overscroll-contain touch-pan-y" data-lenis-prevent>
+        <div class="liquid-glass-strong border-t md:border border-white/10 p-8 pb-12 md:pb-8 rounded-t-[2.5rem] md:rounded-[2.5rem] w-full max-w-sm relative z-10 modal-exit shadow-[0_-20px_50px_rgba(0,0,0,0.5)] md:shadow-[0_30px_60px_rgba(0,0,0,0.5)] max-h-[85vh] overflow-y-auto scrollbar-hide overscroll-contain touch-pan-y"
+            data-lenis-prevent>
 
-            <div class="w-12 h-1.5 bg-brand-border mx-auto rounded-full mb-8 md:hidden"></div>
-            <button id="close-sosmed" class="hidden md:block absolute top-6 right-6 text-brand-text/50 hover:text-brand-text transition-colors">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <div class="w-12 h-1.5 bg-white/20 mx-auto rounded-full mb-8 md:hidden"></div>
+            <button id="close-sosmed" class="hidden md:flex absolute top-6 right-6 w-10 h-10 rounded-full liquid-glass-light items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
 
-            <h3 class="text-3xl font-black tracking-tighter text-center mb-8 mt-2 md:mt-0">Sapa Kami</h3>
+            <h3 class="text-3xl font-black tracking-tighter text-center mb-8 mt-2 md:mt-0 text-white drop-shadow-lg">Hello</h3>
 
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-3">
                 <!-- TIKTOK -->
-                <a href="https://www.tiktok.com/@koepipodjokraffa" target="_blank" rel="noopener noreferrer" class="flex items-center p-5 rounded-2xl bg-brand-bg border border-brand-border hover:border-brand-accent/50 transition-colors gap-5 group">
-                    <div class="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                <a href="https://www.tiktok.com/@koepipodjokraffa" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-2xl liquid-glass hover:bg-white/10 border-white/5 transition-all gap-5 group">
+                    <div class="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center group-hover:scale-110 shadow-inner transition-transform">
                         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/></svg>
                     </div>
-                    <span class="font-bold flex-1">TikTok</span>
-                    <svg class="w-4 h-4 text-brand-text/30 group-hover:text-brand-text transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    <span class="font-semibold flex-1 text-white/90">TikTok</span>
+                    <svg class="w-4 h-4 text-white/30 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                 </a>
 
                 <!-- INSTAGRAM -->
-                <a href="https://www.instagram.com/koepipodjokraffa" target="_blank" rel="noopener noreferrer" class="flex items-center p-5 rounded-2xl bg-brand-bg border border-brand-border hover:border-brand-accent/50 transition-colors gap-5 group">
-                    <div class="w-10 h-10 rounded-full bg-[#E1306C]/10 text-[#E1306C] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <a href="https://www.instagram.com/koepipodjokraffa" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-2xl liquid-glass hover:bg-[#E1306C]/10 border-white/5 hover:border-[#E1306C]/30 transition-all gap-5 group">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#FFDC80] via-[#F56040] to-[#C13584] text-white flex items-center justify-center group-hover:scale-110 shadow-inner transition-transform">
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                     </div>
-                    <span class="font-bold flex-1">Instagram</span>
-                    <svg class="w-4 h-4 text-brand-text/30 group-hover:text-brand-text transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    <span class="font-semibold flex-1 text-white/90 group-hover:text-[#F56040] transition-colors">Instagram</span>
+                    <svg class="w-4 h-4 text-white/30 group-hover:text-[#F56040] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                 </a>
 
                 <!-- WHATSAPP -->
-                <a href="https://www.whatsapp.com" target="_blank" rel="noopener noreferrer" class="flex items-center p-5 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30 hover:bg-[#25D366]/20 transition-colors gap-5 group">
-                    <div class="w-10 h-10 rounded-full bg-[#25D366] text-black flex items-center justify-center group-hover:scale-110 transition-transform">
+                <a href="https://www.whatsapp.com" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-2xl liquid-glass hover:bg-[#25D366]/10 border-white/5 hover:border-[#25D366]/30 transition-all gap-5 group">
+                    <div class="w-10 h-10 rounded-full bg-[#25D366] text-white flex items-center justify-center group-hover:scale-110 shadow-inner transition-transform">
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     </div>
-                    <span class="font-bold flex-1 text-[#25D366]">WhatsApp</span>
-                    <svg class="w-4 h-4 text-[#25D366]/50 group-hover:text-[#25D366] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    <span class="font-semibold flex-1 text-white/90 group-hover:text-[#25D366] transition-colors">WhatsApp</span>
+                    <svg class="w-4 h-4 text-white/30 group-hover:text-[#25D366] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                 </a>
 
                 <!-- GOFOOD -->
-                <a href="https://gofood.link/a/SA8mEX3" target="_blank" rel="noopener noreferrer" class="flex items-center p-5 rounded-2xl bg-brand-bg border border-brand-border hover:border-[#EE2737]/50 transition-colors gap-5 group">
-                    <div class="w-10 h-10 rounded-full bg-[#EE2737]/10 text-[#EE2737] flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <a href="https://gofood.link/a/SA8mEX3" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-2xl liquid-glass hover:bg-[#EE2737]/10 border-white/5 hover:border-[#EE2737]/30 transition-all gap-5 group">
+                    <div class="w-10 h-10 rounded-full bg-[#EE2737] text-white flex items-center justify-center group-hover:scale-110 shadow-inner transition-transform">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                     </div>
-                    <span class="font-bold flex-1 text-[#EE2737]">GoFood</span>
-                    <svg class="w-4 h-4 text-brand-text/30 group-hover:text-[#EE2737] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    <span class="font-semibold flex-1 text-white/90 group-hover:text-[#EE2737] transition-colors">GoFood</span>
+                    <svg class="w-4 h-4 text-white/30 group-hover:text-[#EE2737] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                 </a>
 
                 <!-- SHOPEEFOOD -->
-                <a href="https://shopee.co.id/universal-link/now-food/shop/22711684?deep_and_deferred=1&shareChannel=copy_link" target="_blank" rel="noopener noreferrer" class="flex items-center p-5 rounded-2xl bg-brand-bg border border-brand-border hover:border-[#EE4D2D]/50 transition-colors gap-5 group">
-                    <div class="w-10 h-10 rounded-full bg-[#EE4D2D]/10 text-[#EE4D2D] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <a href="https://shopee.co.id/universal-link/now-food/shop/22711684?deep_and_deferred=1&shareChannel=copy_link" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-2xl liquid-glass hover:bg-[#EE4D2D]/10 border-white/5 hover:border-[#EE4D2D]/30 transition-all gap-5 group">
+                    <div class="w-10 h-10 rounded-full bg-[#EE4D2D] text-white flex items-center justify-center group-hover:scale-110 shadow-inner transition-transform">
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
                     </div>
-                    <span class="font-bold flex-1 text-[#EE4D2D]">ShopeeFood</span>
-                    <svg class="w-4 h-4 text-brand-text/30 group-hover:text-[#EE4D2D] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    <span class="font-semibold flex-1 text-white/90 group-hover:text-[#EE4D2D] transition-colors">ShopeeFood</span>
+                    <svg class="w-4 h-4 text-white/30 group-hover:text-[#EE4D2D] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                 </a>
             </div>
         </div>
@@ -514,7 +605,7 @@
             }]
         };
 
-        // RENDER MENU GRID CARD
+        // RENDER MENU GRID CARD (Diperbarui dengan Liquid Glass)
         function renderMenu(category) {
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
@@ -524,31 +615,34 @@
             setTimeout(() => {
                 DATA_MENU[category].forEach((item, index) => {
                     const el = document.createElement('div');
-                    el.className = "bg-brand-surface rounded-2xl overflow-hidden border border-brand-border transform transition duration-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(217,122,53,0.1)] flex flex-col h-full group";
+                    // Mengganti styling card dengan struktur glass
+                    el.className = "liquid-glass rounded-[2rem] p-2 md:p-3 overflow-hidden transform transition duration-500 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(217,122,53,0.15)] hover:border-brand-accent/30 flex flex-col h-full group relative";
                     el.style.animationDelay = `${index * 50}ms`;
 
                     let priceHtml = '';
                     Object.entries(item.harga).forEach(([ukuran, harga]) => {
                         priceHtml += `
-                            <div class="flex justify-between items-center w-full mb-2 md:mb-3 border-b border-brand-border/50 pb-2">
-                                <span class="text-brand-text/80 text-xs sm:text-sm md:text-base">${ukuran}</span>
-                                <span class="text-brand-accent font-bold text-sm sm:text-lg md:text-xl">${harga}</span>
+                            <div class="flex justify-between items-center w-full mb-2 md:mb-3 border-b border-white/10 pb-2">
+                                <span class="text-white/80 text-xs sm:text-sm md:text-base">${ukuran}</span>
+                                <span class="text-brand-accent font-bold text-sm sm:text-lg md:text-xl drop-shadow-md">${harga}</span>
                             </div>
                         `;
                     });
 
                     el.innerHTML = `
-                        <div class="relative h-32 sm:h-48 md:h-64 w-full overflow-hidden">
-                            <img src="${item.gambar}" alt="${item.nama}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 img-face">
-                            <div class="absolute inset-0 bg-brand-surface flex flex-col justify-center items-center p-3 sm:p-6 opacity-0 translate-y-full transition-all duration-500 price-face z-10">
-                                <h4 class="text-[10px] sm:text-xs md:text-sm tracking-widest uppercase text-brand-text/50 mb-3 md:mb-6 font-semibold">Daftar Harga</h4>
+                        <div class="relative h-32 sm:h-48 md:h-64 w-full overflow-hidden rounded-[1.5rem]">
+                            <img src="${item.gambar}" alt="${item.nama}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 img-face">
+                            
+                            <!-- Overlay Harga (Frosted Glass di atas gambar) -->
+                            <div class="absolute inset-0 liquid-glass-strong flex flex-col justify-center items-center p-4 sm:p-6 opacity-0 translate-y-full transition-all duration-500 price-face z-10">
+                                <h4 class="text-[10px] sm:text-xs md:text-sm tracking-widest uppercase text-white/50 mb-3 md:mb-6 font-semibold">Daftar Harga</h4>
                                 <div class="w-full flex flex-col">${priceHtml}</div>
                             </div>
                         </div>
-                        <div class="p-3 sm:p-5 md:p-6 flex flex-col flex-grow">
-                            <h3 class="text-base sm:text-xl md:text-2xl font-bold text-brand-text mb-1 sm:mb-2 leading-tight line-clamp-2">${item.nama}</h3>
-                            <p class="text-xs sm:text-sm md:text-base text-brand-text/60 mb-3 sm:mb-6 flex-grow line-clamp-3">${item.desc}</p>
-                            <button class="toggle-price-btn flex items-center justify-between w-full mt-auto pt-3 sm:pt-4 border-t border-brand-border text-xs sm:text-sm font-semibold text-brand-accent hover:text-white transition-colors">
+                        <div class="px-3 py-4 sm:px-4 sm:py-5 flex flex-col flex-grow relative z-10">
+                            <h3 class="text-base sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2 leading-tight line-clamp-2 drop-shadow-sm">${item.nama}</h3>
+                            <p class="text-xs sm:text-sm md:text-base text-white/60 mb-3 sm:mb-6 flex-grow line-clamp-2 font-light">${item.desc}</p>
+                            <button class="toggle-price-btn flex items-center justify-between w-full mt-auto pt-3 border-t border-white/10 text-xs sm:text-sm font-semibold text-brand-accent hover:text-white transition-colors">
                                 <span>Lihat Harga</span>
                                 <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-500 icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
                             </button>
@@ -565,7 +659,7 @@
                         if (isShowingPrice) {
                             priceFace.classList.remove('opacity-0', 'translate-y-full');
                             priceFace.classList.add('opacity-100', 'translate-y-0');
-                            btn.querySelector('span').innerText = 'Tutup';
+                            btn.querySelector('span').innerText = 'Tutup Harga';
                             iconArrow.style.transform = 'rotate(180deg)';
                         } else {
                             priceFace.classList.add('opacity-0', 'translate-y-full');
@@ -579,7 +673,7 @@
                 });
 
                 container.style.opacity = '1';
-                container.style.transition = 'opacity 0.4s ease';
+                container.style.transition = 'opacity 0.5s ease';
             }, 50);
         }
 
@@ -588,10 +682,10 @@
             tab.addEventListener('click', (e) => {
                 tabs.forEach(t => {
                     t.classList.remove('tab-active');
-                    t.classList.add('text-brand-text/50');
+                    t.classList.add('text-brand-text/60');
                 });
                 e.target.classList.add('tab-active');
-                e.target.classList.remove('text-brand-text/50');
+                e.target.classList.remove('text-brand-text/60');
                 renderMenu(e.target.dataset.target);
             });
         });
@@ -643,7 +737,8 @@
         function finishLoading() {
             setTimeout(() => {
                 isLoaded = true;
-                preloader.classList.add('-translate-y-full');
+                preloader.style.opacity = '0';
+                setTimeout(() => preloader.classList.add('hidden'), 1000);
             }, 800);
         }
 
@@ -710,8 +805,8 @@
 
         function drawCanvas() {
             const fIdx = Math.floor(scrollProgress * (CONFIG.frameCount - 1));
-            ctx.fillStyle = '#120F0E';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // Canvas dibersihkan sepenuhnya transparan agar background ambient terlihat jika diinginkan
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             if (useFallback) {
                 const cx = canvas.width / 2,
@@ -737,15 +832,15 @@
 
         // TEXT REVEAL
         const revealCont = document.getElementById('reveal-text-container');
-        const revealText = "Di Koepi Podjok Raffa bukan cuma soal Rasa, Melainkan Tawa dan Kebersamaan. Disini Kita jadi Nyata";
-        revealCont.innerHTML = revealText.split('').map(c => `<span class="rev-char transition-opacity duration-300 opacity-[0.1]">${c===' '?'&nbsp;':c}</span>`).join('');
+        const revealText = "Setiap tegukan di Koepi Podjok Raffa adalah teman setia untuk semua cerita, obrolan, dan tawa di sudut favoritmu.";
+        revealCont.innerHTML = revealText.split('').map(c => `<span class="rev-char transition-opacity duration-300 opacity-[0.2] drop-shadow-sm">${c===' '?'&nbsp;':c}</span>`).join('');
         const revSpans = document.querySelectorAll('.rev-char');
         window.addEventListener('scroll', () => {
             const rect = revealCont.getBoundingClientRect();
             let p = (window.innerHeight - rect.top) / (window.innerHeight - rect.height * 0.5);
             p = Math.max(0, Math.min(1, p));
             revSpans.forEach((s, i) => {
-                s.style.opacity = p > (i / revSpans.length) - 0.1 ? 1 : 0.1;
+                s.style.opacity = p > (i / revSpans.length) - 0.1 ? 1 : 0.2;
             });
         });
 
@@ -757,7 +852,7 @@
         setInterval(() => {
             chatIndex = (chatIndex + 1) % chatTotal;
             chatSlider.style.transform = `translateX(-${chatIndex * 100}%)`;
-        }, 2000);
+        }, 3000); // Diperlambat sedikit agar bisa dibaca
 
         // MODAL SOSMED
         const openModal = (id) => {
@@ -782,7 +877,6 @@
 
             setTimeout(() => {
                 el.classList.add('pointer-events-none');
-
                 // Aktifkan Lenis kembali
                 document.body.style.overflow = '';
                 lenis.start();
@@ -794,4 +888,5 @@
         document.getElementById('modal-sosmed-bg').onclick = () => closeModal('modal-sosmed');
     </script>
 </body>
+
 </html>
