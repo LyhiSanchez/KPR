@@ -301,7 +301,7 @@
 
         <div class="w-full">
             <!-- 2. KATALOG MENU -->
-            <section id="katalog-menu" class="py-20 md:py-32 relative z-30">
+            <section id="katalog-menu" class="py-20 md:py-32 relative z-30 overflow-hidden">
                 <div class="max-w-6xl mx-auto px-4 md:px-6">
                     <!-- HEADER KATALOG -->
                     <div class="flex flex-col items-center text-center mb-16 gap-10 w-full">
@@ -310,8 +310,7 @@
                             <p class="text-sm md:text-base text-brand-text/60 max-w-sm mx-auto font-light">Pick Your Favorite</p>
                         </div>
                         <!-- Tabs Kategori Menu (Glass Pill) -->
-                        <div class="flex overflow-x-auto justify-center gap-2 liquid-glass p-2 rounded-full max-w-full scrollbar-hide shadow-2xl">
-                            <!-- Diubah tab-active menjadi tab-active-coffee sebagai default -->
+                        <div class="flex overflow-x-auto justify-center gap-2 liquid-glass p-2 rounded-full max-w-full scrollbar-hide shadow-2xl relative z-20">
                             <button class="menu-tab tab-active-coffee whitespace-nowrap px-8 py-3.5 rounded-full text-sm transition-all duration-300 w-full md:w-auto" data-target="coffee">Coffee</button>
                             <button class="menu-tab whitespace-nowrap px-8 py-3.5 rounded-full text-brand-text/60 text-sm transition-all duration-300 w-full md:w-auto hover:bg-white/5 hover:text-brand-text" data-target="non-coffee">Non-Coffee</button>
                             <button class="menu-tab whitespace-nowrap px-8 py-3.5 rounded-full text-brand-text/60 text-sm transition-all duration-300 w-full md:w-auto hover:bg-white/5 hover:text-brand-text" data-target="snacks">Snacks</button>
@@ -531,95 +530,133 @@
 
         // DATA MENU KPR
         const DATA_MENU = {
-            "coffee": [{
-                nama: "Podjok Kenangan (Aren)",
-                gambar: "Aren1.jpeg",
-                harga: {
-                    "Small Bottle (250ml)": "15K",
-                    "Reguler Cup (380ml)": "12K",
-                    "Monster Bottle (1000ml)": "75K"
+            "coffee": [
+                {
+                    nama: "Podjok Kenangan (Aren)",
+                    gambar: "Aren1.jpeg",
+                    harga: {
+                        "Small Bottle (250ml)": "15K",
+                        "Reguler Cup (380ml)": "12K",
+                        "Monster Bottle (1000ml)": "75K"
+                    }
+                },
+                {
+                    nama: "Podjok Kelabu (Americano)",
+                    gambar: "Americano1.jpeg",
+                    harga: {
+                        "Small Bottle (250ml)": "10K",
+                        "Reguler Cup (380ml)": "10K",
+                        "Monster Bottle (1000ml)": "55K"
+                    }
+                },
+                {
+                    nama: "Podjok Ingatan (Caramel)",
+                    gambar: "Caramel1.jpeg",
+                    harga: {
+                        "Small Bottle (250ml)": "15K",
+                        "Reguler Cup (380ml)": "15K",
+                        "Monster Bottle (1000ml)": "80K"
+                    }
+                },
+                {
+                    nama: "Podjok Kasih Sayang (Pandan)",
+                    gambar: "Pandan1.jpeg",
+                    harga: {
+                        "Small Bottle (250ml)": "18K",
+                        "Reguler Cup (380ml)": "15K",
+                        "Monster Bottle (1000ml)": "82K"
+                    }
                 }
-            }, {
-                nama: "Podjok Kelabu (Americano)",
-                gambar: "Americano1.jpeg",
-                harga: {
-                    "Small Bottle (250ml)": "10K",
-                    "Reguler Cup (380ml)": "10K",
-                    "Monster Bottle (1000ml)": "55K"
+            ],
+            "non-coffee": [
+                {
+                    nama: "Matcha",
+                    gambar: "Matcha.jpeg",
+                    harga: {
+                        "Small Bottle (250ml)": "20K",
+                        "Reguler Cup (380ml)": "15K",
+                        "Monster Bottle (1000ml)": "75K"
+                    }
+                },
+                {
+                    nama: "Chocolate",
+                    gambar: "Coklat.jpeg",
+                    harga: {
+                        "Small Bottle (250ml)": "15K",
+                        "Reguler Cup (380ml)": "12K",
+                        "Monster Bottle (1000ml)": "75K"
+                    }
                 }
-            }, {
-                nama: "Podjok Ingatan (Caramel)",
-                gambar: "Caramel1.jpeg",
-                harga: {
-                    "Small Bottle (250ml)": "15K",
-                    "Reguler Cup (380ml)": "15K",
-                    "Monster Bottle (1000ml)": "80K"
+            ],
+            "snacks": [
+                {
+                    nama: "Kentang Goreng",
+                    gambar: "Kentang.jpeg",
+                    harga: {
+                        "Harga": "10K"
+                    }
+                },
+                {
+                    nama: "Donut 2pcs",
+                    gambar: "Donat.jpeg",
+                    harga: {
+                        "Harga": "10K"
+                    }
+                },
+                {
+                    nama: "Dimsum 3pcs",
+                    gambar: "Dimsum.jpeg",
+                    harga: {
+                        "Harga": "10K"
+                    }
+                },
+                {
+                    nama: "Cireng Rujak",
+                    gambar: "Cireng.jpeg",
+                    harga: {
+                        "Harga": "10K"
+                    }
                 }
-            }, {
-                nama: "Podjok Kasih Sayang (Pandan)",
-                gambar: "Pandan1.jpeg",
-                harga: {
-                    "Small Bottle (250ml)": "18K",
-                    "Reguler Cup (380ml)": "15K",
-                    "Monster Bottle (1000ml)": "82K"
-                }
-            }],
-            "non-coffee": [{
-                nama: "Matcha",
-                gambar: "Matcha.jpeg",
-                harga: {
-                    "Small Bottle (250ml)": "20K",
-                    "Reguler Cup (380ml)": "15K",
-                    "Monster Bottle (1000ml)": "75K"
-                }
-            }, {
-                nama: "Chocolate",
-                gambar: "Coklat.jpeg",
-                harga: {
-                    "Small Bottle (250ml)": "15K",
-                    "Reguler Cup (380ml)": "12K",
-                    "Monster Bottle (1000ml)": "75K"
-                }
-            }],
-            "snacks": [{
-                nama: "Kentang Goreng",
-                gambar: "Kentang.jpeg",
-                harga: {
-                    "Harga": "10K"
-                }
-            }, {
-                nama: "Donut 2pcs",
-                gambar: "Donat.jpeg",
-                harga: {
-                    "Harga": "10K"
-                }
-            }, {
-                nama: "Dimsum 3pcs",
-                gambar: "Dimsum.jpeg",
-                harga: {
-                    "Harga": "10K"
-                }
-            }, {
-                nama: "Cireng Rujak",
-                gambar: "Cireng.jpeg",
-                harga: {
-                    "Harga": "10K"
-                }
-            }]
+            ]
         };
 
-        // RENDER MENU GRID CARD
+        // VARIABEL UNTUK MELACAK POSISI TAB SEBELUMNYA (Agar tau arah geser)
+        const categoryOrder = { 'coffee': 0, 'non-coffee': 1, 'snacks': 2 };
+        let currentCategory = 'coffee';
+
+        // RENDER MENU GRID CARD DENGAN ANIMASI SLIDE MENYAMPING
         function renderMenu(category) {
             const container = document.getElementById('menu-container');
-            container.innerHTML = '';
+            
+            // Tentukan arah geser
+            // dir = 1 (geser kiri, baru masuk dari kanan) -> saat tab baru lebih besar nilainya
+            // dir = -1 (geser kanan, baru masuk dari kiri) -> saat tab baru lebih kecil nilainya
+            let dir = 1;
+            if (categoryOrder[category] < categoryOrder[currentCategory]) {
+                dir = -1;
+            }
+            currentCategory = category;
+            
+            // 1. Animasi keluar (geser ke samping menjauh & pudar)
             container.style.opacity = '0';
-            container.className = 'grid grid-cols-2 gap-3 sm:gap-6 md:gap-8';
+            container.style.transform = `translateX(${dir * -30}px)`;
+            container.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
 
+            // 2. Tunggu 300ms sampai animasi hilang selesai
             setTimeout(() => {
+                container.innerHTML = '';
+                container.className = 'grid grid-cols-2 gap-3 sm:gap-6 md:gap-8';
+                
+                // Pindahkan diam-diam kontainer ke sisi berlawanan untuk bersiap masuk
+                container.style.transition = 'none';
+                container.style.transform = `translateX(${dir * 30}px)`;
+
                 DATA_MENU[category].forEach((item, index) => {
                     const el = document.createElement('div');
-                    el.className = "liquid-glass rounded-[2rem] p-2 md:p-3 overflow-hidden transform transition duration-500 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(217,122,53,0.15)] hover:border-brand-accent/30 flex flex-col h-full group relative";
-                    el.style.animationDelay = `${index * 50}ms`;
+                    
+                    // Gunakan class Tailwind untuk posisi awal (opacity 0 dan digeser sedikit)
+                    let startClass = dir === 1 ? 'translate-x-8' : '-translate-x-8';
+                    el.className = `liquid-glass rounded-[2rem] p-2 md:p-3 overflow-hidden transform transition duration-700 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(217,122,53,0.15)] hover:border-brand-accent/30 flex flex-col h-full group relative opacity-0 ${startClass}`;
 
                     let priceHtml = '';
                     Object.entries(item.harga).forEach(([ukuran, harga]) => {
@@ -632,7 +669,7 @@
                     });
 
                     // Deskripsi dihapus dan judul dibuat mengambil flex-grow agar rata secara vertikal
-                    // KOTAK GAMBAR DIBUAT LEBIH TINGGI -> Mengubah h-32/48/64 menjadi h-48/64/80
+                    // KOTAK GAMBAR DIBUAT LEBIH TINGGI -> h-48/64/80
                     el.innerHTML = `
                         <div class="relative h-48 sm:h-64 md:h-80 w-full overflow-hidden rounded-[1.5rem]">
                             <img src="${item.gambar}" alt="${item.nama}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 img-face">
@@ -673,17 +710,31 @@
                     });
 
                     container.appendChild(el);
+
+                    // 3. Animasi masuk masing-masing kartu (Stagger)
+                    setTimeout(() => {
+                        el.classList.remove('opacity-0', startClass);
+                        el.classList.add('opacity-100', 'translate-x-0');
+                    }, 50 + (index * 80)); // Muncul satu per satu
                 });
 
-                container.style.opacity = '1';
-                container.style.transition = 'opacity 0.5s ease';
-            }, 50);
+                // 4. Bawa kontainer utama ke tengah
+                setTimeout(() => {
+                    container.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                    container.style.opacity = '1';
+                    container.style.transform = 'translateX(0)';
+                }, 20); // Jeda kecil agar DOM render dulu posisinya
+
+            }, 300);
         }
 
-        // TAB KATEGORI: Diperbarui agar menggunakan warna yang berbeda berdasarkan data-target
+        // TAB KATEGORI: Mendengarkan klik dan menjalankan menu
         const tabs = document.querySelectorAll('.menu-tab');
         tabs.forEach(tab => {
             tab.addEventListener('click', (e) => {
+                // Jangan lakukan animasi jika kita mengklik tab yang sedang aktif
+                if (e.target.classList.contains(`tab-active-${e.target.dataset.target}`)) return;
+
                 // Hapus semua class aktif dari semua tab
                 tabs.forEach(t => {
                     t.classList.remove('tab-active-coffee', 'tab-active-non-coffee', 'tab-active-snacks');
@@ -701,6 +752,11 @@
                 renderMenu(targetKategori);
             });
         });
+        
+        // Inisialisasi awal container
+        const initialContainer = document.getElementById('menu-container');
+        initialContainer.style.opacity = '1';
+        initialContainer.style.transform = 'translateX(0)';
         renderMenu('coffee');
 
         // PRELOADER & HERO LOGIC
