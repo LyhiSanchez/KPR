@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- MENCEGAH BROWSER HP MELAKUKAN AUTO DARK MODE YANG MERUSAK WARNA -->
+    <meta name="color-scheme" content="light only">
+    <meta name="supported-color-schemes" content="light">
+
     <title>KPR - Eclectic Art Direction</title>
 
-    <!-- Google Fonts BUNDLE: Typo (Anton, Garamond, Inter) | Brutal (Space Grotesk) -->
+    <!-- Google Fonts BUNDLE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:wght@300;400;600;800;900&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:wght@300;400;600;800;900&family=Space+Grotesk:wght@500;700;900&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS with Combined Config -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,30 +22,23 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'], // Typo base & Bold Pricing
-                        display: ['Anton', 'sans-serif'], // Typo massive
-                        serif: ['Cormorant Garamond', 'serif'], // Typo elegant
-                        brutal: ['"Space Grotesk"', 'sans-serif'] // Brutal base
+                        sans: ['Inter', 'sans-serif'],           // Typo base
+                        display: ['Anton', 'sans-serif'],        // Typo massive
+                        serif: ['Cormorant Garamond', 'serif'],  // Typo elegant
+                        brutal: ['"Space Grotesk"', 'sans-serif'],// Brutal base
+                        cyber: ['"Orbitron"', 'sans-serif'],     // Cyber headers
+                        mono: ['"Share Tech Mono"', 'monospace'] // Cyber terminal
                     },
                     colors: {
-                        typo: {
-                            bg: '#EBEBEB',
-                            dark: '#0A0A0A',
-                            accent: '#D9501E',
-                            muted: '#A0A0A0'
-                        },
-                        brutal: {
-                            bg: '#f4f4f0',
-                            black: '#111111',
-                            yellow: '#FAFF00',
-                            pink: '#FF90E8',
-                            blue: '#38bdf8',
-                            green: '#ccff00'
-                        }
+                        typo: { bg: '#EBEBEB', dark: '#0A0A0A', accent: '#D9501E', muted: '#A0A0A0' },
+                        brutal: { bg: '#f4f4f0', black: '#111111', yellow: '#FAFF00', pink: '#FF90E8', blue: '#38bdf8', green: '#ccff00' },
+                        cyber: { bg: '#050505', surface: '#0f0f13', cyan: '#00f3ff', magenta: '#ff003c', yellow: '#fcee0a', muted: '#4a4a55' }
                     },
                     boxShadow: {
                         'brutal': '6px 6px 0px 0px #111111',
-                        'brutal-lg': '12px 12px 0px 0px #111111'
+                        'brutal-lg': '12px 12px 0px 0px #111111',
+                        'neon-cyan': '0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3)',
+                        'neon-magenta': '0 0 10px rgba(255, 0, 60, 0.5), 0 0 20px rgba(255, 0, 60, 0.3)'
                     }
                 }
             }
@@ -52,188 +49,100 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
 
     <style>
-        /* GLOBAL RESET */
-        
-        body {
-            background-color: #EBEBEB;
-            color: #0A0A0A;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
+        /* GLOBAL RESET & MOBILE FIXES */
+        body { 
+            background-color: #EBEBEB; 
+            color: #0A0A0A; 
+            overflow-x: hidden; 
+            -webkit-tap-highlight-color: transparent; 
+            -webkit-text-size-adjust: 100%;
+            color-scheme: light only; /* Memastikan browser tidak membalik warna */
         }
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
         
-         ::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-        }
         /* ========================================== */
         /* 1. TYPOGRAPHY THEME STYLES                 */
         /* ========================================== */
+        .text-outline { color: transparent; -webkit-text-stroke: 1.5px #0A0A0A; transition: color 0.3s ease; }
+        @media (hover: hover) { .text-outline:hover { color: #0A0A0A; } } /* Cegah hover nyangkut di HP */
         
-        .text-outline {
-            color: transparent;
-            -webkit-text-stroke: 1.5px #0A0A0A;
-            transition: color 0.3s ease;
-        }
+        .text-outline-white { color: transparent; -webkit-text-stroke: 1.5px #EBEBEB; }
+        .text-massive { font-size: 22vw; line-height: 0.8; letter-spacing: -0.02em; }
         
-        .text-outline:hover {
-            color: #0A0A0A;
-        }
-        
-        .text-outline-white {
-            color: transparent;
-            -webkit-text-stroke: 1.5px #EBEBEB;
-        }
-        
-        .text-massive {
-            font-size: 22vw;
-            line-height: 0.8;
-            letter-spacing: -0.02em;
-        }
-        
-        .menu-row {
-            border-bottom: 1px solid #0A0A0A;
-            transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .menu-row:hover {
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
+        .menu-row { border-bottom: 1px solid #0A0A0A; transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        @media (hover: hover) { .menu-row:hover { padding-left: 2rem; padding-right: 2rem; } }
         
         #floating-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 300px;
-            height: 380px;
-            object-fit: cover;
-            pointer-events: none;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.8);
-            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 100;
+            position: fixed; top: 0; left: 0; width: 300px; height: 380px; object-fit: cover;
+            pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(0.8);
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); z-index: 100;
+            display: none; /* Sembunyikan default */
         }
+        /* Tampilkan floating image hanya di desktop (layar besar & punya mouse) */
+        @media (hover: hover) and (min-width: 768px) {
+            #floating-image { display: block; }
+        }
+        #floating-image.active { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(4deg); }
         
-        #floating-image.active {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1) rotate(4deg);
-        }
+        .link-hover { position: relative; display: inline-block; }
+        .link-hover::after { content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px; bottom: 0; left: 0; background-color: currentColor; transform-origin: bottom right; transition: transform 0.4s; }
+        @media (hover: hover) { .link-hover:hover::after { transform: scaleX(1); transform-origin: bottom left; } }
         
-        .link-hover {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .link-hover::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: currentColor;
-            transform-origin: bottom right;
-            transition: transform 0.4s;
-        }
-        
-        .link-hover:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-        
-        .marquee-wrapper {
-            position: relative;
-            width: 100vw;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        
-        .marquee-track {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 25s linear infinite;
-        }
-        
-        .marquee-track.reverse {
-            animation: marquee-reverse 30s linear infinite;
-        }
-        
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-        
-        @keyframes marquee-reverse {
-            0% {
-                transform: translateX(-50%);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
+        .marquee-wrapper { position: relative; width: 100vw; overflow: hidden; white-space: nowrap; }
+        .marquee-track { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
+        .marquee-track.reverse { animation: marquee-reverse 30s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes marquee-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
         /* ========================================== */
         /* 2. NEO-BRUTALISM THEME STYLES              */
         /* ========================================== */
-        
-        .brutal-pattern {
-            background-image: radial-gradient(#111111 1.5px, transparent 1.5px);
-            background-size: 30px 30px;
+        .brutal-pattern { background-image: radial-gradient(#111111 1.5px, transparent 1.5px); background-size: 30px 30px; }
+        .card-brutal { background: #ffffff; border: 4px solid #111111; box-shadow: 8px 8px 0px 0px #111111; transition: all 0.2s ease-in-out; }
+        @media (hover: hover) { .card-brutal:hover { transform: translate(4px, 4px); box-shadow: 4px 4px 0px 0px #111111; } }
+
+        /* ========================================== */
+        /* 3. CYBERPUNK THEME STYLES                  */
+        /* ========================================== */
+        .cyber-grid { background-image: linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px); background-size: 30px 30px; }
+        .cyber-cut { clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)); }
+        .cyber-btn {
+            position: relative; background: transparent; color: #00f3ff; border: 1px solid #00f3ff;
+            text-transform: uppercase; font-family: 'Orbitron', sans-serif; font-weight: 700;
+            box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.1); transition: all 0.2s;
+            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
         }
+        .cyber-btn:hover { color: #050505; background: #00f3ff; box-shadow: 0 0 20px rgba(0, 243, 255, 0.6); }
         
-        .card-brutal {
-            background: #ffffff;
-            border: 4px solid #111111;
-            box-shadow: 8px 8px 0px 0px #111111;
-            transition: all 0.2s ease-in-out;
+        .glitch-text { position: relative; }
+        .glitch-text::before, .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; }
+        .glitch-text::before { left: 2px; text-shadow: -2px 0 #ff003c; clip: rect(24px, 550px, 90px, 0); animation: glitch-anim 3s infinite linear alternate-reverse; }
+        .glitch-text::after { left: -2px; text-shadow: -2px 0 #00f3ff; clip: rect(85px, 550px, 140px, 0); animation: glitch-anim 2.5s infinite linear alternate-reverse; }
+        @keyframes glitch-anim {
+            0% { clip: rect(10px, 9999px, 30px, 0); } 20% { clip: rect(50px, 9999px, 80px, 0); }
+            40% { clip: rect(10px, 9999px, 40px, 0); } 60% { clip: rect(80px, 9999px, 100px, 0); }
+            80% { clip: rect(20px, 9999px, 60px, 0); } 100% { clip: rect(90px, 9999px, 120px, 0); }
         }
-        
-        .card-brutal:hover {
-            transform: translate(4px, 4px);
-            box-shadow: 4px 4px 0px 0px #111111;
-        }
+        .scanlines { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2)); background-size: 100% 4px; pointer-events: none; z-index: 50; opacity: 0.3; }
+
         /* MODAL ANIMATION */
+        .modal-enter { opacity: 0; transform: scale(0.95); filter: blur(5px); }
+        .modal-enter-active { opacity: 1; transform: scale(1); filter: blur(0); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .modal-exit { opacity: 0; transform: scale(1.05); filter: blur(5px); transition: all 0.2s ease-in; pointer-events: none; }
+        .overlay-enter { opacity: 0; }
+        .overlay-enter-active { opacity: 1; transition: opacity 0.4s ease; }
         
-        .modal-enter {
-            opacity: 0;
-            transform: translateY(100%);
-        }
-        
-        .modal-enter-active {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .modal-exit {
-            opacity: 0;
-            transform: translateY(100%);
-            transition: all 0.4s ease-in;
-            pointer-events: none;
-        }
-        
-        .overlay-enter {
-            opacity: 0;
-        }
-        
-        .overlay-enter-active {
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
+        /* Isolasi context agar mix-blend-mode berfungsi di Safari iOS */
+        .blend-isolate { isolation: isolate; }
     </style>
 </head>
-
 <body class="antialiased">
 
-    <!-- FLOATING IMAGE FOR MENU -->
+    <!-- FLOATING IMAGE FOR MENU (Muncul hanya di layar besar) -->
     <img id="floating-image" src="" alt="Menu Preview">
 
     <!-- PRELOADER (Typographic) -->
-    <div id="preloader" class="fixed inset-0 z-[200] bg-typo-dark text-typo-bg flex flex-col justify-between p-6 md:p-10 transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] origin-top">
+    <div id="preloader" class="fixed inset-0 z-[200] bg-typo-dark text-typo-bg flex flex-col justify-between p-6 md:p-10 transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] origin-top blend-isolate">
         <div class="flex justify-between uppercase tracking-widest text-xs font-semibold">
             <span>Loading Sequence</span>
             <span>Est. 2024</span>
@@ -249,19 +158,21 @@
     </div>
 
     <!-- NAVBAR (Typographic) -->
-    <nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-10 py-6 mix-blend-difference text-white pointer-events-auto">
+    <nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-10 py-6 mix-blend-difference text-white pointer-events-auto blend-isolate">
         <div class="text-xl font-display uppercase tracking-widest cursor-pointer">KPR.</div>
         <button id="btn-menu-top" class="text-sm font-semibold uppercase tracking-widest link-hover">Connect</button>
     </nav>
 
-    <!-- HERO SECTION (Typographic + Canvas) -->
-    <div id="hero-container" class="relative z-10 w-full h-[350vh] bg-typo-bg">
-        <div class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center">
-
+    <!-- THEME 1/5: HERO SECTION (Typographic + Canvas) -->
+    <div id="hero-container" class="relative z-10 w-full h-[350vh] bg-typo-bg blend-isolate">
+        <div class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center bg-typo-bg">
+            
+            <!-- Canvas Setup -->
             <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover z-0 filter grayscale opacity-40 transition-all duration-100" style="will-change: filter, opacity;"></canvas>
-
+            
             <div id="fallback-badge" class="hidden absolute top-24 left-6 text-[10px] font-semibold uppercase tracking-widest bg-typo-dark text-typo-bg px-3 py-1 z-10">Fallback: Text Mode</div>
 
+            <!-- Kinetic Typography -->
             <div id="hero-text-overlay" class="relative z-10 w-full flex flex-col justify-center transition-all duration-300">
                 <div class="marquee-wrapper">
                     <div class="marquee-track flex gap-8 md:gap-16 items-center">
@@ -296,6 +207,7 @@
     </div>
 
     <!-- THEME 2/5: NEO-BRUTALISM (FILOSOFI) -->
+    <!-- Transisi dibungkus dengan background yang jelas agar tidak transparan di HP -->
     <div class="relative z-20 w-full border-t-8 border-brutal-black brutal-pattern bg-brutal-bg text-brutal-black">
         <section id="filosofi-section" class="w-full px-4 md:px-10 py-32 relative z-10 flex flex-col items-center">
             <div class="bg-brutal-pink border-4 border-brutal-black px-6 py-2 shadow-brutal transform -rotate-2 mb-12">
@@ -305,29 +217,28 @@
             <div class="card-brutal py-16 px-6 md:px-20 max-w-5xl w-full text-center bg-brutal-yellow relative">
                 <div class="absolute top-4 left-4 w-6 h-6 bg-white border-4 border-brutal-black rounded-full shadow-brutal"></div>
                 <div class="absolute top-4 right-4 w-6 h-6 bg-white border-4 border-brutal-black rounded-full shadow-brutal"></div>
-
+                
                 <h2 id="reveal-text-container" class="block text-3xl sm:text-4xl md:text-6xl font-brutal font-black uppercase leading-[1.1]">
-                    Di Koepi Podjok Raffa bukan cuma soal <span class="bg-white px-2 border-4 border-brutal-black">RASA</span>. Melainkan tawa, kebersamaan, dan <span class="bg-brutal-blue text-white px-2 border-4 border-brutal-black">CERITA</span>. Di
-                    sini kita jadi nyata.
+                    Di Koepi Podjok Raffa bukan cuma soal <span class="bg-white px-2 border-4 border-brutal-black">RASA</span>. Melainkan tawa, kebersamaan, dan <span class="bg-brutal-blue text-white px-2 border-4 border-brutal-black">CERITA</span>. Di sini kita jadi nyata.
                 </h2>
             </div>
         </section>
     </div>
 
     <!-- THEME 3/5: TYPOGRAPHY (MENU COLORFUL & BOLD PRICING) -->
-    <div class="bg-typo-bg border-t-8 border-brutal-black w-full relative z-20">
+    <div class="bg-typo-bg border-t-8 border-brutal-black w-full relative z-20 blend-isolate">
         <section id="katalog-menu" class="py-32 md:py-40 px-6 md:px-10 relative">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 border-b border-typo-dark pb-10">
                 <h2 class="text-[12vw] md:text-[8vw] font-display uppercase leading-none text-typo-dark">KATALOG.</h2>
-
-                <div class="flex gap-6 text-sm font-semibold uppercase tracking-widest">
-                    <button class="menu-tab text-typo-accent flex flex-col items-center gap-2" data-target="coffee">
+                
+                <div class="flex gap-6 text-sm font-semibold uppercase tracking-widest overflow-x-auto w-full md:w-auto pb-4 md:pb-0 scrollbar-hide">
+                    <button class="menu-tab text-typo-accent flex flex-col items-center gap-2 flex-shrink-0" data-target="coffee">
                         Coffee <span class="w-1.5 h-1.5 rounded-full bg-typo-accent tab-indicator"></span>
                     </button>
-                    <button class="menu-tab text-typo-muted flex flex-col items-center gap-2 hover:text-typo-dark transition-colors" data-target="non-coffee">
+                    <button class="menu-tab text-typo-muted flex flex-col items-center gap-2 hover:text-typo-dark transition-colors flex-shrink-0" data-target="non-coffee">
                         Non-Coffee <span class="w-1.5 h-1.5 rounded-full bg-transparent tab-indicator"></span>
                     </button>
-                    <button class="menu-tab text-typo-muted flex flex-col items-center gap-2 hover:text-typo-dark transition-colors" data-target="snacks">
+                    <button class="menu-tab text-typo-muted flex flex-col items-center gap-2 hover:text-typo-dark transition-colors flex-shrink-0" data-target="snacks">
                         Snacks <span class="w-1.5 h-1.5 rounded-full bg-transparent tab-indicator"></span>
                     </button>
                 </div>
@@ -353,7 +264,7 @@
 
             <div class="w-full max-w-4xl mx-auto px-6 overflow-hidden relative z-10">
                 <div id="chat-slider" class="flex transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
-
+                    
                     <div class="min-w-full flex justify-center p-4">
                         <div class="bg-brutal-yellow px-8 py-10 max-w-xl relative w-full transform rotate-2 card-brutal text-brutal-black">
                             <div class="w-full border-b-4 border-brutal-black pb-4 mb-6 flex justify-between items-center font-brutal">
@@ -392,66 +303,63 @@
         </section>
     </div>
 
-    <!-- THEME 5/5: TYPOGRAPHY (FOOTER & MODAL POP-UP) -->
-    <div class="w-full relative z-30 border-t-8 border-brutal-black bg-typo-dark text-typo-bg">
-        <section class="py-20 md:py-32 flex flex-col items-center justify-center text-center">
-            <p class="text-xs font-semibold uppercase tracking-widest text-typo-muted mb-6">Jangan Hanya Membaca</p>
+    <!-- THEME 5/5: CYBERPUNK (FOOTER) -->
+    <!-- Diberikan bg-color solid agar di HP tidak error warnanya -->
+    <div class="w-full relative z-30 border-t-8 border-brutal-black bg-cyber-bg text-cyber-cyan cyber-grid">
+        <div class="scanlines"></div>
 
-            <button id="btn-kontak" class="group flex flex-col items-center">
-                <h2 class="text-[15vw] font-display uppercase leading-none transition-transform duration-500 group-hover:scale-105 group-hover:text-typo-accent">
-                    PESAN
-                </h2>
-                <h2 class="text-[15vw] font-display uppercase leading-none text-outline-white transition-all duration-500 group-hover:text-typo-bg group-hover:-webkit-text-stroke-transparent">
-                    SEKARANG
-                </h2>
+        <section class="relative py-32 px-6 flex flex-col items-center text-center">
+            <div class="font-mono text-cyber-yellow mb-6 text-sm tracking-widest relative z-10">> CONNECTION PROTOCOL READY</div>
+            
+            <h3 class="text-5xl md:text-7xl font-cyber uppercase mb-12 z-10 text-white glitch-text drop-shadow-[0_0_10px_rgba(0,243,255,0.8)]" data-text="ESTABLISH UPLINK?">
+                Establish Uplink?
+            </h3>
+
+            <button id="btn-kontak" class="cyber-btn bg-cyber-bg px-12 py-5 text-xl z-10 flex items-center justify-center gap-4 group">
+                <span>// CONNECT_NOW</span>
+                <span class="font-mono group-hover:translate-x-2 transition-transform">>_</span>
             </button>
         </section>
 
-        <footer class="bg-typo-bg text-typo-dark py-10 px-6 md:px-10 flex flex-col md:flex-row justify-between items-center text-xs font-semibold uppercase tracking-widest border-t-8 border-brutal-black">
-            <p>&copy; 2026 KPR.</p>
-            <p class="mt-4 md:mt-0 font-serif italic text-lg capitalize text-typo-muted">Simplicity is the ultimate sophistication.</p>
-            <p class="mt-4 md:mt-0">All Rights Reserved</p>
+        <!-- FOOTER Bawah -->
+        <footer class="bg-[#020202] text-cyber-muted py-8 text-center border-t border-cyber-cyan/30 relative z-10">
+            <h2 class="text-2xl font-cyber tracking-widest mb-2 text-cyber-cyan">KPR_CORP</h2>
+            <p class="font-mono text-xs uppercase">&copy; 2077 KOEPI PODJOK RAFFA. END OF TRANSMISSION.</p>
         </footer>
     </div>
 
-    <!-- MODAL: TYPOGRAPHY (Full Screen Pop Up) -->
-    <div id="modal-sosmed" class="fixed inset-0 z-[100] flex items-end pointer-events-none overlay-enter">
-        <div class="absolute inset-0 bg-typo-dark/40 backdrop-blur-md transition-opacity duration-500" id="modal-sosmed-bg"></div>
+    <!-- MODAL: CYBERPUNK TERMINAL -->
+    <div id="modal-sosmed" class="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none overlay-enter p-4">
+        <div class="absolute inset-0 bg-[#050505]/90 backdrop-blur-sm transition-opacity duration-300" id="modal-sosmed-bg"></div>
+        <div class="scanlines"></div>
 
-        <div class="bg-typo-bg w-full h-[85vh] md:h-[70vh] relative z-10 modal-exit flex flex-col rounded-t-[2.5rem] border-t-8 border-brutal-black" data-lenis-prevent>
-
-            <div class="flex justify-between items-center p-6 md:p-10 border-b-4 border-brutal-black">
-                <span class="font-display text-4xl uppercase tracking-wider text-typo-dark">DIRECTORY.</span>
-                <button id="close-sosmed" class="text-sm font-semibold uppercase tracking-widest link-hover text-typo-dark">
-                    Tutup
-                </button>
+        <div class="bg-[#0f0f13] border border-cyber-cyan w-full max-w-md relative z-20 modal-exit shadow-neon-cyan flex flex-col cyber-cut" data-lenis-prevent>
+            
+            <div class="h-10 border-b border-cyber-cyan bg-cyber-cyan/10 flex items-center justify-between px-4">
+                <span class="font-mono text-cyber-cyan text-xs">ROOT@KPR: ~/COMMUNICATION_LINKS</span>
+                <button id="close-sosmed" class="text-cyber-cyan hover:text-cyber-magenta font-mono font-bold transition-colors">[X]</button>
             </div>
 
-            <div class="flex-1 overflow-y-auto flex flex-col justify-center px-6 md:px-20 py-10 text-typo-dark">
-                <a href="https://www.tiktok.com/@koepipodjokraffa" target="_blank" class="text-4xl sm:text-5xl md:text-7xl font-display uppercase text-outline hover:text-typo-dark transition-all py-4 border-b border-typo-dark/20 flex justify-between items-end group">
-                    <span>TIKTOK</span>
-                    <span class="font-serif italic text-xl sm:text-2xl text-typo-accent opacity-0 group-hover:opacity-100 transition-opacity">Video</span>
-                </a>
+            <div class="p-6 md:p-8">
+                <h3 class="text-2xl font-cyber text-white uppercase mb-2">> Network_Nodes</h3>
+                <p class="font-mono text-xs text-cyber-muted mb-8 border-b border-cyber-muted pb-2">Select transmission channel...</p>
 
-                <a href="https://www.instagram.com/koepipodjokraffa" target="_blank" class="text-4xl sm:text-5xl md:text-7xl font-display uppercase text-outline hover:text-typo-dark transition-all py-4 border-b border-typo-dark/20 flex justify-between items-end group">
-                    <span>INSTAGRAM</span>
-                    <span class="font-serif italic text-xl sm:text-2xl text-typo-accent opacity-0 group-hover:opacity-100 transition-opacity">Visuals</span>
-                </a>
+                <div class="flex flex-col gap-4 font-mono">
+                    <a href="https://www.tiktok.com/@koepipodjokraffa" target="_blank" class="cyber-btn flex items-center p-3 gap-4 text-cyber-cyan">
+                        <span class="text-xs uppercase w-8 text-center bg-cyber-cyan/20">TK</span>
+                        <span class="font-bold flex-1 text-sm tracking-widest">TIKTOK_NET</span>
+                    </a>
 
-                <a href="https://wa.me/6289625890539" target="_blank" class="text-4xl sm:text-5xl md:text-7xl font-display uppercase text-outline hover:text-typo-dark transition-all py-4 border-b border-typo-dark/20 flex justify-between items-end group">
-                    <span>WHATSAPP</span>
-                    <span class="font-serif italic text-xl sm:text-2xl text-typo-accent opacity-0 group-hover:opacity-100 transition-opacity">Chat</span>
-                </a>
+                    <a href="https://www.instagram.com/koepipodjokraffa" target="_blank" class="cyber-btn flex items-center p-3 gap-4 border-cyber-magenta text-cyber-magenta shadow-none hover:shadow-neon-magenta hover:bg-cyber-magenta">
+                        <span class="text-xs uppercase w-8 text-center bg-cyber-magenta/20">IG</span>
+                        <span class="font-bold flex-1 text-sm tracking-widest">INSTAGRAM_NET</span>
+                    </a>
 
-                <a href="https://gofood.link/a/SA8mEX3" target="_blank" class="text-4xl sm:text-5xl md:text-7xl font-display uppercase text-outline hover:text-typo-dark transition-all py-4 border-b border-typo-dark/20 flex justify-between items-end group">
-                    <span>GOFOOD</span>
-                    <span class="font-serif italic text-xl sm:text-2xl text-typo-accent opacity-0 group-hover:opacity-100 transition-opacity">Order</span>
-                </a>
-
-                <a href="https://shopee.co.id/universal-link/now-food/shop/22711684" target="_blank" class="text-4xl sm:text-5xl md:text-7xl font-display uppercase text-outline hover:text-typo-dark transition-all py-4 flex justify-between items-end group">
-                    <span>SHOPEEFOOD</span>
-                    <span class="font-serif italic text-xl sm:text-2xl text-typo-accent opacity-0 group-hover:opacity-100 transition-opacity">Order</span>
-                </a>
+                    <a href="https://wa.me/6289625890539" target="_blank" class="cyber-btn flex items-center p-3 gap-4 border-[#00ff00] text-[#00ff00] shadow-none hover:shadow-[0_0_20px_#00ff00] hover:bg-[#00ff00]">
+                        <span class="text-xs uppercase w-8 text-center bg-[#00ff00]/20">WA</span>
+                        <span class="font-bold flex-1 text-sm tracking-widest">WHATSAPP_COMMS</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -459,33 +367,24 @@
     <!-- JAVASCRIPT LOGIC BUNDLE -->
     <script>
         // ==========================================
-        // 1. GLOBAL: LENIS SMOOTH SCROLL
+        // 1. GLOBAL: LENIS SMOOTH SCROLL (Disable on Mobile for better native feel)
         // ==========================================
-        const lenis = new Lenis({
-            duration: 1.5,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smooth: true
-        });
-
-        function raf(time) {
-            lenis.raf(time);
+        const isMobile = window.innerWidth < 768;
+        let lenis;
+        if (!isMobile) {
+            lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
+            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
             requestAnimationFrame(raf);
         }
-        requestAnimationFrame(raf);
 
         // ==========================================
         // 2. TYPOGRAPHY THEME: PRELOADER & CANVAS
         // ==========================================
-        const CONFIG = {
-            frameCount: 192,
-            path: 'sequence/',
-            prefix: 'ezgif-frame-',
-            ext: '.jpg'
-        };
+        const CONFIG = { frameCount: 192, path: 'sequence/', prefix: 'ezgif-frame-', ext: '.jpg' };
         const images = [];
         let useFallback = false;
         const pad = (num) => num.toString().padStart(3, '0');
-
+        
         const preloader = document.getElementById('preloader');
         const counterEl = document.getElementById('counter');
         const fallbackBadge = document.getElementById('fallback-badge');
@@ -510,10 +409,7 @@
                     const intv = setInterval(() => {
                         fakeCount += 5;
                         counterEl.innerText = Math.min(fakeCount, 100).toString().padStart(2, '0');
-                        if (fakeCount >= 100) {
-                            clearInterval(intv);
-                            finishLoading();
-                        }
+                        if (fakeCount >= 100) { clearInterval(intv); finishLoading(); }
                     }, 50);
                 }
             };
@@ -521,9 +417,7 @@
         }
 
         function finishLoading() {
-            setTimeout(() => {
-                preloader.style.transform = 'translateY(-100%)';
-            }, 600);
+            setTimeout(() => { preloader.style.transform = 'translateY(-100%)'; }, 600);
         }
 
         const canvas = document.getElementById('hero-canvas');
@@ -532,11 +426,7 @@
         const heroTextOverlay = document.getElementById('hero-text-overlay');
         let scrollProgress = 0;
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            drawCanvas();
-        }
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; drawCanvas(); }
         window.addEventListener('resize', resizeCanvas);
         setTimeout(resizeCanvas, 100);
 
@@ -569,13 +459,9 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             if (useFallback) {
-                const cx = canvas.width / 2,
-                    cy = canvas.height / 2;
-                ctx.save();
-                ctx.translate(cx, cy);
-                ctx.rotate(scrollProgress * Math.PI);
-                ctx.strokeStyle = '#0A0A0A';
-                ctx.lineWidth = 1;
+                const cx = canvas.width / 2, cy = canvas.height / 2;
+                ctx.save(); ctx.translate(cx, cy); ctx.rotate(scrollProgress * Math.PI);
+                ctx.strokeStyle = '#0A0A0A'; ctx.lineWidth = 1;
                 for (let i = 0; i < 30; i++) {
                     ctx.beginPath();
                     ctx.arc(0, 0, 100 + i * 20 + Math.sin(scrollProgress * 10) * 50, 0, Math.PI * 2);
@@ -595,74 +481,35 @@
         // 3. TYPOGRAPHY THEME: MENU LIST & FLOATING IMG
         // ==========================================
         const DATA_MENU = {
-            "coffee": [{
-                nama: "PODJOK KENANGAN",
-                gambar: "Aren1.jpeg",
-                desc: "Signature Aren",
-                harga: "Mulai 12K"
-            }, {
-                nama: "PODJOK KELABU",
-                gambar: "Americano1.jpeg",
-                desc: "Classic Americano",
-                harga: "Mulai 10K"
-            }, {
-                nama: "PODJOK INGATAN",
-                gambar: "Caramel1.jpeg",
-                desc: "Smooth Caramel",
-                harga: "Mulai 15K"
-            }, {
-                nama: "PODJOK SAYANG",
-                gambar: "Pandan1.jpeg",
-                desc: "Fragrant Pandan",
-                harga: "Mulai 15K"
-            }],
-            "non-coffee": [{
-                nama: "MATCHA",
-                gambar: "Matcha.jpeg",
-                desc: "Premium Green Tea",
-                harga: "Mulai 15K"
-            }, {
-                nama: "CHOCOLATE",
-                gambar: "Coklat.jpeg",
-                desc: "Rich Cocoa",
-                harga: "Mulai 12K"
-            }],
-            "snacks": [{
-                nama: "KENTANG GORENG",
-                gambar: "Kentang.jpeg",
-                desc: "Salty & Crispy",
-                harga: "10K"
-            }, {
-                nama: "DONUT (2pcs)",
-                gambar: "Donat.jpeg",
-                desc: "Sweet Dough",
-                harga: "10K"
-            }, {
-                nama: "DIMSUM (3pcs)",
-                gambar: "Dimsum.jpeg",
-                desc: "Steamed Chicken",
-                harga: "10K"
-            }, {
-                nama: "CIRENG RUJAK",
-                gambar: "Cireng.jpeg",
-                desc: "Spicy & Chewy",
-                harga: "10K"
-            }]
+            "coffee": [
+                { nama: "PODJOK KENANGAN", gambar: "Aren1.jpeg", desc: "Signature Aren", harga: "Mulai 12K" },
+                { nama: "PODJOK KELABU", gambar: "Americano1.jpeg", desc: "Classic Americano", harga: "Mulai 10K" },
+                { nama: "PODJOK INGATAN", gambar: "Caramel1.jpeg", desc: "Smooth Caramel", harga: "Mulai 15K" },
+                { nama: "PODJOK SAYANG", gambar: "Pandan1.jpeg", desc: "Fragrant Pandan", harga: "Mulai 15K" }
+            ],
+            "non-coffee": [
+                { nama: "MATCHA", gambar: "Matcha.jpeg", desc: "Premium Green Tea", harga: "Mulai 15K" },
+                { nama: "CHOCOLATE", gambar: "Coklat.jpeg", desc: "Rich Cocoa", harga: "Mulai 12K" }
+            ],
+            "snacks": [
+                { nama: "KENTANG GORENG", gambar: "Kentang.jpeg", desc: "Salty & Crispy", harga: "10K" },
+                { nama: "DONUT (2pcs)", gambar: "Donat.jpeg", desc: "Sweet Dough", harga: "10K" },
+                { nama: "DIMSUM (3pcs)", gambar: "Dimsum.jpeg", desc: "Steamed Chicken", harga: "10K" },
+                { nama: "CIRENG RUJAK", gambar: "Cireng.jpeg", desc: "Spicy & Chewy", harga: "10K" }
+            ]
         };
 
         const floatImg = document.getElementById('floating-image');
-        // Koleksi gradien pelangi vibran untuk nama Menu
         const gradients = [
-            'bg-gradient-to-r from-[#D9501E] to-[#ea580c]', // Orange
-            'bg-gradient-to-r from-[#0284c7] to-[#2563eb]', // Biru Brutal
-            'bg-gradient-to-r from-[#d946ef] to-[#9333ea]', // Pink/Ungu
-            'bg-gradient-to-r from-[#16a34a] to-[#059669]' // Hijau Neon
+            'bg-gradient-to-r from-[#D9501E] to-[#ea580c]',
+            'bg-gradient-to-r from-[#0284c7] to-[#2563eb]',
+            'bg-gradient-to-r from-[#d946ef] to-[#9333ea]',
+            'bg-gradient-to-r from-[#16a34a] to-[#059669]'
         ];
-
+        
         function renderMenu(category) {
             const container = document.getElementById('menu-container');
-            container.style.opacity = '0';
-            container.style.transform = `translateY(20px)`;
+            container.style.opacity = '0'; container.style.transform = `translateY(20px)`;
             container.style.transition = 'all 0.3s ease';
 
             setTimeout(() => {
@@ -674,42 +521,35 @@
                     el.className = `menu-row flex flex-col md:flex-row justify-between items-start md:items-end py-8 md:py-12 cursor-pointer w-full relative z-10 opacity-0 translate-y-8 font-sans group`;
                     el.dataset.img = item.gambar;
 
-                    // Pricing diubah menggunakan font-sans font-black untuk mempertebal
-                    // Nama menu diberikan efek warna-warni gradien saat dihover
+                    // Pricing font-black, Color hover for Desktop only via CSS logic above
                     el.innerHTML = `
                         <div class="flex flex-col pointer-events-none w-full md:w-auto">
                             <span class="text-xs font-bold uppercase tracking-widest text-typo-muted mb-2">0${index + 1} // ${item.desc}</span>
-                            <h3 class="menu-name text-4xl md:text-5xl lg:text-7xl font-display uppercase text-typo-dark leading-none transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:${gradClass} group-hover:scale-[1.02] transform origin-left">${item.nama}</h3>
+                            <h3 class="menu-name text-4xl md:text-5xl lg:text-7xl font-display uppercase text-typo-dark leading-none transition-all duration-300 lg:group-hover:text-transparent lg:group-hover:bg-clip-text lg:group-hover:${gradClass} lg:group-hover:scale-[1.02] transform origin-left">${item.nama}</h3>
                         </div>
                         <div class="mt-4 md:mt-0 font-sans font-black text-3xl md:text-5xl text-typo-dark pointer-events-none tracking-tight">
                             ${item.harga}
                         </div>
                     `;
 
-                    el.addEventListener('mouseenter', (e) => {
-                        floatImg.src = e.currentTarget.dataset.img;
-                        floatImg.onerror = () => {
-                            floatImg.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNkOWQ5ZDkiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NjYiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPklNQUdFIFBSRVZJRVc8L3RleHQ+PC9zdmc+';
-                        };
-                        floatImg.classList.add('active');
-                    });
-                    el.addEventListener('mousemove', (e) => {
-                        floatImg.style.left = e.clientX + 'px';
-                        floatImg.style.top = e.clientY + 'px';
-                    });
-                    el.addEventListener('mouseleave', () => {
-                        floatImg.classList.remove('active');
-                    });
+                    // Only attach floating image events if on Desktop
+                    if(!isMobile) {
+                        el.addEventListener('mouseenter', (e) => {
+                            floatImg.src = e.currentTarget.dataset.img;
+                            floatImg.onerror = () => { floatImg.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNkOWQ5ZDkiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NjYiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPklNQUdFIFBSRVZJRVc8L3RleHQ+PC9zdmc+'; };
+                            floatImg.classList.add('active');
+                        });
+                        el.addEventListener('mousemove', (e) => { floatImg.style.left = e.clientX + 'px'; floatImg.style.top = e.clientY + 'px'; });
+                        el.addEventListener('mouseleave', () => { floatImg.classList.remove('active'); });
+                    }
 
                     container.appendChild(el);
                     setTimeout(() => {
                         el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
+                        el.style.opacity = '1'; el.style.transform = 'translateY(0)';
                     }, 50 + (index * 100));
                 });
-                container.style.opacity = '1';
-                container.style.transform = 'translateY(0)';
+                container.style.opacity = '1'; container.style.transform = 'translateY(0)';
             }, 300);
         }
 
@@ -719,45 +559,40 @@
                 const targetBtn = e.currentTarget;
                 if (targetBtn.classList.contains('text-typo-accent')) return;
                 tabs.forEach(t => {
-                    t.classList.remove('text-typo-accent');
-                    t.classList.add('text-typo-muted');
+                    t.classList.remove('text-typo-accent'); t.classList.add('text-typo-muted');
                     t.querySelector('.tab-indicator').classList.replace('bg-typo-accent', 'bg-transparent');
                 });
-                targetBtn.classList.remove('text-typo-muted');
-                targetBtn.classList.add('text-typo-accent');
+                targetBtn.classList.remove('text-typo-muted'); targetBtn.classList.add('text-typo-accent');
                 targetBtn.querySelector('.tab-indicator').classList.replace('bg-transparent', 'bg-typo-accent');
                 renderMenu(targetBtn.dataset.target);
             });
         });
 
         renderMenu('coffee');
-        document.getElementById('katalog-menu').addEventListener('mouseleave', () => {
-            floatImg.classList.remove('active');
-        });
+        if(!isMobile) {
+            document.getElementById('katalog-menu').addEventListener('mouseleave', () => { floatImg.classList.remove('active'); });
+        }
 
 
         // ==========================================
         // 4. NEO-BRUTALISM THEME: TESTIMONIAL SLIDER
         // ==========================================
         const chatSlider = document.getElementById('chat-slider');
-        let chatIndex = 0;
-        const chatTotal = 3;
+        let chatIndex = 0; const chatTotal = 3; 
         setInterval(() => {
             chatIndex = (chatIndex + 1) % chatTotal;
             chatSlider.style.transform = `translateX(-${chatIndex * 100}%)`;
-        }, 4000);
+        }, 4000); 
 
         // ==========================================
-        // 5. TYPOGRAPHY MODAL LOGIC
+        // 5. CYBERPUNK THEME: MODAL LOGIC
         // ==========================================
         const openModal = (id) => {
             const el = document.getElementById(id);
             const content = el.querySelector('.modal-exit');
-            el.classList.remove('pointer-events-none');
-            el.classList.add('overlay-enter-active');
-            content.classList.remove('modal-exit');
-            content.classList.add('modal-enter-active');
-            lenis.stop();
+            el.classList.remove('pointer-events-none'); el.classList.add('overlay-enter-active');
+            content.classList.remove('modal-exit'); content.classList.add('modal-enter-active');
+            if(!isMobile && lenis) lenis.stop(); 
             document.body.style.overflow = 'hidden';
         };
 
@@ -765,12 +600,11 @@
             const el = document.getElementById(id);
             const content = el.querySelector('.modal-enter-active') || el.querySelector('.modal-exit');
             el.classList.remove('overlay-enter-active');
-            content.classList.remove('modal-enter-active');
-            content.classList.add('modal-exit');
+            content.classList.remove('modal-enter-active'); content.classList.add('modal-exit');
             setTimeout(() => {
                 el.classList.add('pointer-events-none');
-                document.body.style.overflow = '';
-                lenis.start();
+                document.body.style.overflow = ''; 
+                if(!isMobile && lenis) lenis.start();
             }, 400);
         };
 
@@ -780,5 +614,4 @@
         document.getElementById('modal-sosmed-bg').onclick = () => closeModal('modal-sosmed');
     </script>
 </body>
-
 </html>
