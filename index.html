@@ -8,12 +8,12 @@
     <meta name="color-scheme" content="light only">
     <meta name="supported-color-schemes" content="light">
 
-    <title>KPR - Eclectic Art Direction</title>
+    <title>KPR - Typographic & Brutalism Strike</title>
 
-    <!-- Google Fonts BUNDLE -->
+    <!-- Google Fonts: Typo (Anton, Garamond, Inter) | Brutal (Space Grotesk) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:wght@300;400;600;800;900&family=Space+Grotesk:wght@500;700;900&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:wght@300;400;600;800;900&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS with Combined Config -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,23 +22,30 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],           // Typo base
+                        sans: ['Inter', 'sans-serif'],           // Typo base & Pricing
                         display: ['Anton', 'sans-serif'],        // Typo massive
                         serif: ['Cormorant Garamond', 'serif'],  // Typo elegant
-                        brutal: ['"Space Grotesk"', 'sans-serif'],// Brutal base
-                        cyber: ['"Orbitron"', 'sans-serif'],     // Cyber headers
-                        mono: ['"Share Tech Mono"', 'monospace'] // Cyber terminal
+                        brutal: ['"Space Grotesk"', 'sans-serif'] // Brutal base
                     },
                     colors: {
-                        typo: { bg: '#EBEBEB', dark: '#0A0A0A', accent: '#D9501E', muted: '#A0A0A0' },
-                        brutal: { bg: '#f4f4f0', black: '#111111', yellow: '#FAFF00', pink: '#FF90E8', blue: '#38bdf8', green: '#ccff00' },
-                        cyber: { bg: '#050505', surface: '#0f0f13', cyan: '#00f3ff', magenta: '#ff003c', yellow: '#fcee0a', muted: '#4a4a55' }
+                        typo: { 
+                            bg: '#EBEBEB',       
+                            dark: '#0A0A0A',     
+                            accent: '#D9501E',   
+                            muted: '#A0A0A0'     
+                        },
+                        brutal: { 
+                            black: '#111111', 
+                            yellow: '#FAFF00', 
+                            pink: '#FF90E8', 
+                            blue: '#38bdf8', 
+                            green: '#ccff00', 
+                            orange: '#FF5C00' 
+                        }
                     },
                     boxShadow: {
                         'brutal': '6px 6px 0px 0px #111111',
-                        'brutal-lg': '12px 12px 0px 0px #111111',
-                        'neon-cyan': '0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3)',
-                        'neon-magenta': '0 0 10px rgba(255, 0, 60, 0.5), 0 0 20px rgba(255, 0, 60, 0.3)'
+                        'brutal-lg': '12px 12px 0px 0px #111111'
                     }
                 }
             }
@@ -56,38 +63,37 @@
             overflow-x: hidden; 
             -webkit-tap-highlight-color: transparent; 
             -webkit-text-size-adjust: 100%;
-            color-scheme: light only; /* Memastikan browser tidak membalik warna */
+            color-scheme: light only; 
         }
         ::-webkit-scrollbar { width: 0px; background: transparent; }
         
         /* ========================================== */
-        /* 1. TYPOGRAPHY THEME STYLES                 */
+        /* TYPOGRAPHY THEME STYLES                    */
         /* ========================================== */
         .text-outline { color: transparent; -webkit-text-stroke: 1.5px #0A0A0A; transition: color 0.3s ease; }
-        @media (hover: hover) { .text-outline:hover { color: #0A0A0A; } } /* Cegah hover nyangkut di HP */
-        
+        @media (hover: hover) { .text-outline:hover { color: #0A0A0A; } } 
         .text-outline-white { color: transparent; -webkit-text-stroke: 1.5px #EBEBEB; }
         .text-massive { font-size: 22vw; line-height: 0.8; letter-spacing: -0.02em; }
         
         .menu-row { border-bottom: 1px solid #0A0A0A; transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         @media (hover: hover) { .menu-row:hover { padding-left: 2rem; padding-right: 2rem; } }
         
+        /* Floating Image Hover */
         #floating-image {
             position: fixed; top: 0; left: 0; width: 300px; height: 380px; object-fit: cover;
             pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(0.8);
             transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); z-index: 100;
-            display: none; /* Sembunyikan default */
+            display: none; 
         }
-        /* Tampilkan floating image hanya di desktop (layar besar & punya mouse) */
-        @media (hover: hover) and (min-width: 768px) {
-            #floating-image { display: block; }
-        }
+        @media (hover: hover) and (min-width: 768px) { #floating-image { display: block; } }
         #floating-image.active { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(4deg); }
         
+        /* Hover Links */
         .link-hover { position: relative; display: inline-block; }
         .link-hover::after { content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px; bottom: 0; left: 0; background-color: currentColor; transform-origin: bottom right; transition: transform 0.4s; }
         @media (hover: hover) { .link-hover:hover::after { transform: scaleX(1); transform-origin: bottom left; } }
         
+        /* Marquee */
         .marquee-wrapper { position: relative; width: 100vw; overflow: hidden; white-space: nowrap; }
         .marquee-track { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
         .marquee-track.reverse { animation: marquee-reverse 30s linear infinite; }
@@ -95,55 +101,30 @@
         @keyframes marquee-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
         /* ========================================== */
-        /* 2. NEO-BRUTALISM THEME STYLES              */
+        /* NEO-BRUTALISM THEME STYLES (Khusus Testimoni)*/
         /* ========================================== */
         .brutal-pattern { background-image: radial-gradient(#111111 1.5px, transparent 1.5px); background-size: 30px 30px; }
         .card-brutal { background: #ffffff; border: 4px solid #111111; box-shadow: 8px 8px 0px 0px #111111; transition: all 0.2s ease-in-out; }
         @media (hover: hover) { .card-brutal:hover { transform: translate(4px, 4px); box-shadow: 4px 4px 0px 0px #111111; } }
 
-        /* ========================================== */
-        /* 3. CYBERPUNK THEME STYLES                  */
-        /* ========================================== */
-        .cyber-grid { background-image: linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px); background-size: 30px 30px; }
-        .cyber-cut { clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)); }
-        .cyber-btn {
-            position: relative; background: transparent; color: #00f3ff; border: 1px solid #00f3ff;
-            text-transform: uppercase; font-family: 'Orbitron', sans-serif; font-weight: 700;
-            box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.1); transition: all 0.2s;
-            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
-        }
-        .cyber-btn:hover { color: #050505; background: #00f3ff; box-shadow: 0 0 20px rgba(0, 243, 255, 0.6); }
-        
-        .glitch-text { position: relative; }
-        .glitch-text::before, .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; }
-        .glitch-text::before { left: 2px; text-shadow: -2px 0 #ff003c; clip: rect(24px, 550px, 90px, 0); animation: glitch-anim 3s infinite linear alternate-reverse; }
-        .glitch-text::after { left: -2px; text-shadow: -2px 0 #00f3ff; clip: rect(85px, 550px, 140px, 0); animation: glitch-anim 2.5s infinite linear alternate-reverse; }
-        @keyframes glitch-anim {
-            0% { clip: rect(10px, 9999px, 30px, 0); } 20% { clip: rect(50px, 9999px, 80px, 0); }
-            40% { clip: rect(10px, 9999px, 40px, 0); } 60% { clip: rect(80px, 9999px, 100px, 0); }
-            80% { clip: rect(20px, 9999px, 60px, 0); } 100% { clip: rect(90px, 9999px, 120px, 0); }
-        }
-        .scanlines { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2)); background-size: 100% 4px; pointer-events: none; z-index: 50; opacity: 0.3; }
-
         /* MODAL ANIMATION */
-        .modal-enter { opacity: 0; transform: scale(0.95); filter: blur(5px); }
-        .modal-enter-active { opacity: 1; transform: scale(1); filter: blur(0); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .modal-exit { opacity: 0; transform: scale(1.05); filter: blur(5px); transition: all 0.2s ease-in; pointer-events: none; }
+        .modal-enter { opacity: 0; transform: translateY(100%); }
+        .modal-enter-active { opacity: 1; transform: translateY(0); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .modal-exit { opacity: 0; transform: translateY(100%); transition: all 0.4s ease-in; pointer-events: none; }
         .overlay-enter { opacity: 0; }
-        .overlay-enter-active { opacity: 1; transition: opacity 0.4s ease; }
+        .overlay-enter-active { opacity: 1; transition: opacity 0.5s ease; }
         
-        /* Isolasi context agar mix-blend-mode berfungsi di Safari iOS */
         .blend-isolate { isolation: isolate; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- FLOATING IMAGE FOR MENU (Muncul hanya di layar besar) -->
+    <!-- FLOATING IMAGE FOR MENU -->
     <img id="floating-image" src="" alt="Menu Preview">
 
     <!-- PRELOADER (Typographic) -->
     <div id="preloader" class="fixed inset-0 z-[200] bg-typo-dark text-typo-bg flex flex-col justify-between p-6 md:p-10 transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] origin-top blend-isolate">
-        <div class="flex justify-between uppercase tracking-widest text-xs font-semibold">
+        <div class="flex justify-between uppercase tracking-widest text-xs font-semibold font-sans">
             <span>Loading Sequence</span>
             <span>Est. 2024</span>
         </div>
@@ -151,28 +132,26 @@
             <span id="counter" class="font-display text-[25vw] leading-none">00</span>
             <span class="font-serif italic text-4xl md:text-6xl text-typo-accent">%</span>
         </div>
-        <div class="uppercase tracking-widest text-xs font-semibold flex justify-between">
+        <div class="uppercase tracking-widest text-xs font-semibold flex justify-between font-sans">
             <span>Koepi Podjok Raffa</span>
-            <span>Eclectic Art Direction</span>
+            <span>Typographic Edition</span>
         </div>
     </div>
 
     <!-- NAVBAR (Typographic) -->
     <nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-10 py-6 mix-blend-difference text-white pointer-events-auto blend-isolate">
         <div class="text-xl font-display uppercase tracking-widest cursor-pointer">KPR.</div>
-        <button id="btn-menu-top" class="text-sm font-semibold uppercase tracking-widest link-hover">Connect</button>
+        <button id="btn-menu-top" class="text-sm font-sans font-semibold uppercase tracking-widest link-hover">Directory</button>
     </nav>
 
-    <!-- THEME 1/5: HERO SECTION (Typographic + Canvas) -->
+    <!-- SECTION 1: HERO (Typographic + Canvas) -->
     <div id="hero-container" class="relative z-10 w-full h-[350vh] bg-typo-bg blend-isolate">
         <div class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center bg-typo-bg">
             
-            <!-- Canvas Setup -->
             <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover z-0 filter grayscale opacity-40 transition-all duration-100" style="will-change: filter, opacity;"></canvas>
             
-            <div id="fallback-badge" class="hidden absolute top-24 left-6 text-[10px] font-semibold uppercase tracking-widest bg-typo-dark text-typo-bg px-3 py-1 z-10">Fallback: Text Mode</div>
+            <div id="fallback-badge" class="hidden absolute top-24 left-6 text-[10px] font-sans font-semibold uppercase tracking-widest bg-typo-dark text-typo-bg px-3 py-1 z-10">Fallback: Text Mode</div>
 
-            <!-- Kinetic Typography -->
             <div id="hero-text-overlay" class="relative z-10 w-full flex flex-col justify-center transition-all duration-300">
                 <div class="marquee-wrapper">
                     <div class="marquee-track flex gap-8 md:gap-16 items-center">
@@ -200,38 +179,38 @@
                 </div>
             </div>
 
-            <div class="absolute bottom-6 left-6 md:left-10 text-xs font-semibold uppercase tracking-widest max-w-xs leading-relaxed text-typo-dark mix-blend-overlay z-10">
+            <div class="absolute bottom-6 left-6 md:left-10 text-xs font-sans font-semibold uppercase tracking-widest max-w-xs leading-relaxed text-typo-dark mix-blend-overlay z-10">
                 SCROLL TO EXPLORE <br> THE ART OF COFFEE.
             </div>
         </div>
     </div>
 
-    <!-- THEME 2/5: NEO-BRUTALISM (FILOSOFI) -->
-    <!-- Transisi dibungkus dengan background yang jelas agar tidak transparan di HP -->
-    <div class="relative z-20 w-full border-t-8 border-brutal-black brutal-pattern bg-brutal-bg text-brutal-black">
-        <section id="filosofi-section" class="w-full px-4 md:px-10 py-32 relative z-10 flex flex-col items-center">
-            <div class="bg-brutal-pink border-4 border-brutal-black px-6 py-2 shadow-brutal transform -rotate-2 mb-12">
-                <p class="font-brutal font-black uppercase text-xl">01. FILOSOFI KAMI</p>
+    <!-- SECTION 2: FILOSOFI (Typographic) -->
+    <div class="relative z-20 w-full bg-typo-dark text-typo-bg border-t border-typo-dark">
+        <section id="filosofi-section" class="w-full px-6 md:px-10 py-32 md:py-48 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 relative">
+            <div class="md:col-span-3">
+                <p class="text-xs font-sans uppercase tracking-widest text-typo-muted font-semibold sticky top-32">
+                    [ Filosofi & Makna ]
+                </p>
             </div>
-
-            <div class="card-brutal py-16 px-6 md:px-20 max-w-5xl w-full text-center bg-brutal-yellow relative">
-                <div class="absolute top-4 left-4 w-6 h-6 bg-white border-4 border-brutal-black rounded-full shadow-brutal"></div>
-                <div class="absolute top-4 right-4 w-6 h-6 bg-white border-4 border-brutal-black rounded-full shadow-brutal"></div>
-                
-                <h2 id="reveal-text-container" class="block text-3xl sm:text-4xl md:text-6xl font-brutal font-black uppercase leading-[1.1]">
-                    Di Koepi Podjok Raffa bukan cuma soal <span class="bg-white px-2 border-4 border-brutal-black">RASA</span>. Melainkan tawa, kebersamaan, dan <span class="bg-brutal-blue text-white px-2 border-4 border-brutal-black">CERITA</span>. Di sini kita jadi nyata.
+            <div class="md:col-span-9">
+                <h2 id="reveal-text-container" class="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-display uppercase leading-[0.9] text-typo-bg">
+                    <!-- JS Injected -->
                 </h2>
+                <div class="mt-16 text-xl md:text-3xl font-serif italic text-typo-muted max-w-3xl leading-relaxed">
+                    Kami percaya bahwa secangkir kopi adalah medium komunikasi. Setiap tegukan menceritakan proses panjang dari biji hingga menjadi cerita di sudut meja.
+                </div>
             </div>
         </section>
     </div>
 
-    <!-- THEME 3/5: TYPOGRAPHY (MENU COLORFUL & BOLD PRICING) -->
-    <div class="bg-typo-bg border-t-8 border-brutal-black w-full relative z-20 blend-isolate">
+    <!-- SECTION 3: KATALOG MENU (Typography with Hover Image & Color) -->
+    <div class="bg-typo-bg w-full relative z-20 blend-isolate">
         <section id="katalog-menu" class="py-32 md:py-40 px-6 md:px-10 relative">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 border-b border-typo-dark pb-10">
                 <h2 class="text-[12vw] md:text-[8vw] font-display uppercase leading-none text-typo-dark">KATALOG.</h2>
                 
-                <div class="flex gap-6 text-sm font-semibold uppercase tracking-widest overflow-x-auto w-full md:w-auto pb-4 md:pb-0 scrollbar-hide">
+                <div class="flex gap-6 text-sm font-sans font-semibold uppercase tracking-widest overflow-x-auto w-full md:w-auto pb-4 md:pb-0 scrollbar-hide">
                     <button class="menu-tab text-typo-accent flex flex-col items-center gap-2 flex-shrink-0" data-target="coffee">
                         Coffee <span class="w-1.5 h-1.5 rounded-full bg-typo-accent tab-indicator"></span>
                     </button>
@@ -249,8 +228,9 @@
         </section>
     </div>
 
-    <!-- THEME 4/5: NEO-BRUTALISM (TESTIMONI) -->
-    <div class="bg-brutal-blue border-t-8 border-brutal-black w-full relative z-20 overflow-hidden">
+    <!-- SECTION 4: TESTIMONI (Neo-Brutalism Surprise Element) -->
+    <div class="bg-brutal-blue border-t-8 border-typo-dark w-full relative z-20 overflow-hidden">
+        
         <div class="w-full bg-brutal-black text-white font-brutal font-black text-2xl py-4 border-b-4 border-brutal-black overflow-hidden relative z-20">
             <div class="marquee-wrapper">
                 <div class="marquee-track">
@@ -259,8 +239,8 @@
             </div>
         </div>
 
-        <section class="py-32 flex flex-col items-center relative z-10">
-            <h2 class="text-5xl md:text-7xl font-brutal font-black uppercase text-white mb-20" style="-webkit-text-stroke: 2px #111111; text-shadow: 6px 6px 0px #111111;">Kata Mereka</h2>
+        <section class="py-32 flex flex-col items-center relative z-10 brutal-pattern">
+            <h2 class="text-5xl md:text-7xl font-brutal font-black uppercase text-white mb-20 bg-brutal-black px-6 py-2 border-4 border-white transform -rotate-1 shadow-[8px_8px_0px_0px_#FFFFFF]">Kata Mereka</h2>
 
             <div class="w-full max-w-4xl mx-auto px-6 overflow-hidden relative z-10">
                 <div id="chat-slider" class="flex transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
@@ -268,33 +248,33 @@
                     <div class="min-w-full flex justify-center p-4">
                         <div class="bg-brutal-yellow px-8 py-10 max-w-xl relative w-full transform rotate-2 card-brutal text-brutal-black">
                             <div class="w-full border-b-4 border-brutal-black pb-4 mb-6 flex justify-between items-center font-brutal">
-                                <span class="font-black text-2xl">#01</span>
-                                <span class="font-black text-xl">★★★★★</span>
+                                <span class="font-black text-2xl bg-white px-2 border-2 border-brutal-black">#01</span>
+                                <span class="font-black text-xl text-brutal-orange">★★★★★</span>
                             </div>
                             <p class="text-2xl font-brutal font-black uppercase leading-[1.2] mb-8">"Gula aren latte-nya balance banget, manisnya pas."</p>
-                            <span class="text-sm font-bold font-brutal uppercase bg-white border-2 border-brutal-black px-4 py-2">USR: Fadhilah</span>
+                            <span class="text-sm font-bold font-brutal uppercase bg-white border-2 border-brutal-black px-4 py-2 shadow-brutal text-brutal-blue">USR: Fadhilah</span>
                         </div>
                     </div>
 
                     <div class="min-w-full flex justify-center p-4">
                         <div class="bg-brutal-pink px-8 py-10 max-w-xl relative w-full transform -rotate-1 card-brutal text-brutal-black">
                             <div class="w-full border-b-4 border-brutal-black pb-4 mb-6 flex justify-between items-center font-brutal">
-                                <span class="font-black text-2xl">#02</span>
-                                <span class="font-black text-xl">★★★★★</span>
+                                <span class="font-black text-2xl bg-white px-2 border-2 border-brutal-black">#02</span>
+                                <span class="font-black text-xl text-brutal-yellow">★★★★★</span>
                             </div>
                             <p class="text-2xl font-brutal font-black uppercase leading-[1.2] mb-8">"Pandan latte unik. Wanginya pas tanpa berlebihan."</p>
-                            <span class="text-sm font-bold font-brutal uppercase bg-white border-2 border-brutal-black px-4 py-2">USR: Dhiah</span>
+                            <span class="text-sm font-bold font-brutal uppercase bg-white border-2 border-brutal-black px-4 py-2 shadow-brutal text-brutal-orange">USR: Dhiah</span>
                         </div>
                     </div>
 
                     <div class="min-w-full flex justify-center p-4">
                         <div class="bg-brutal-green px-8 py-10 max-w-xl relative w-full transform rotate-1 card-brutal text-brutal-black">
                             <div class="w-full border-b-4 border-brutal-black pb-4 mb-6 flex justify-between items-center font-brutal">
-                                <span class="font-black text-2xl">#03</span>
-                                <span class="font-black text-xl">★★★★★</span>
+                                <span class="font-black text-2xl bg-white px-2 border-2 border-brutal-black">#03</span>
+                                <span class="font-black text-xl text-brutal-pink">★★★★★</span>
                             </div>
                             <p class="text-2xl font-brutal font-black uppercase leading-[1.2] mb-8">"Americano-nya clean & smooth. Enak diminum kapan aja."</p>
-                            <span class="text-sm font-bold font-brutal uppercase bg-white border-2 border-brutal-black px-4 py-2">USR: Hardiya</span>
+                            <span class="text-sm font-bold font-brutal uppercase bg-white border-2 border-brutal-black px-4 py-2 shadow-brutal text-brutal-black">USR: Hardiya</span>
                         </div>
                     </div>
 
@@ -303,63 +283,66 @@
         </section>
     </div>
 
-    <!-- THEME 5/5: CYBERPUNK (FOOTER) -->
-    <!-- Diberikan bg-color solid agar di HP tidak error warnanya -->
-    <div class="w-full relative z-30 border-t-8 border-brutal-black bg-cyber-bg text-cyber-cyan cyber-grid">
-        <div class="scanlines"></div>
-
-        <section class="relative py-32 px-6 flex flex-col items-center text-center">
-            <div class="font-mono text-cyber-yellow mb-6 text-sm tracking-widest relative z-10">> CONNECTION PROTOCOL READY</div>
+    <!-- SECTION 5: CTA & FOOTER (Back to Typographic) -->
+    <div class="w-full relative z-30 border-t-8 border-typo-dark bg-typo-dark text-typo-bg">
+        <section class="py-20 md:py-32 flex flex-col items-center justify-center text-center">
+            <p class="text-xs font-sans font-semibold uppercase tracking-widest text-typo-muted mb-6">Jangan Hanya Membaca</p>
             
-            <h3 class="text-5xl md:text-7xl font-cyber uppercase mb-12 z-10 text-white glitch-text drop-shadow-[0_0_10px_rgba(0,243,255,0.8)]" data-text="ESTABLISH UPLINK?">
-                Establish Uplink?
-            </h3>
-
-            <button id="btn-kontak" class="cyber-btn bg-cyber-bg px-12 py-5 text-xl z-10 flex items-center justify-center gap-4 group">
-                <span>// CONNECT_NOW</span>
-                <span class="font-mono group-hover:translate-x-2 transition-transform">>_</span>
+            <button id="btn-kontak" class="group flex flex-col items-center">
+                <h2 class="text-[15vw] font-display uppercase leading-none transition-transform duration-500 group-hover:scale-105 group-hover:text-typo-accent">
+                    PESAN
+                </h2>
+                <h2 class="text-[15vw] font-display uppercase leading-none text-outline-white transition-all duration-500 group-hover:text-typo-bg group-hover:-webkit-text-stroke-transparent">
+                    SEKARANG
+                </h2>
             </button>
         </section>
 
-        <!-- FOOTER Bawah -->
-        <footer class="bg-[#020202] text-cyber-muted py-8 text-center border-t border-cyber-cyan/30 relative z-10">
-            <h2 class="text-2xl font-cyber tracking-widest mb-2 text-cyber-cyan">KPR_CORP</h2>
-            <p class="font-mono text-xs uppercase">&copy; 2077 KOEPI PODJOK RAFFA. END OF TRANSMISSION.</p>
+        <footer class="bg-typo-bg text-typo-dark py-10 px-6 md:px-10 flex flex-col md:flex-row justify-between items-center text-xs font-sans font-semibold uppercase tracking-widest border-t border-typo-dark/20">
+            <p>&copy; 2026 KPR.</p>
+            <p class="mt-4 md:mt-0 font-serif italic text-lg capitalize text-typo-muted">Simplicity is the ultimate sophistication.</p>
+            <p class="mt-4 md:mt-0">All Rights Reserved</p>
         </footer>
     </div>
 
-    <!-- MODAL: CYBERPUNK TERMINAL -->
-    <div id="modal-sosmed" class="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none overlay-enter p-4">
-        <div class="absolute inset-0 bg-[#050505]/90 backdrop-blur-sm transition-opacity duration-300" id="modal-sosmed-bg"></div>
-        <div class="scanlines"></div>
+    <!-- MODAL: TYPOGRAPHY DIRECTORY (Full Screen Pop Up) -->
+    <div id="modal-sosmed" class="fixed inset-0 z-[100] flex items-end pointer-events-none overlay-enter">
+        <div class="absolute inset-0 bg-typo-dark/40 backdrop-blur-md transition-opacity duration-500" id="modal-sosmed-bg"></div>
 
-        <div class="bg-[#0f0f13] border border-cyber-cyan w-full max-w-md relative z-20 modal-exit shadow-neon-cyan flex flex-col cyber-cut" data-lenis-prevent>
+        <div class="bg-typo-bg w-full h-[85vh] md:h-[70vh] relative z-10 modal-exit flex flex-col rounded-t-[2.5rem]" data-lenis-prevent>
             
-            <div class="h-10 border-b border-cyber-cyan bg-cyber-cyan/10 flex items-center justify-between px-4">
-                <span class="font-mono text-cyber-cyan text-xs">ROOT@KPR: ~/COMMUNICATION_LINKS</span>
-                <button id="close-sosmed" class="text-cyber-cyan hover:text-cyber-magenta font-mono font-bold transition-colors">[X]</button>
+            <div class="flex justify-between items-center p-6 md:p-10 border-b border-typo-dark/20">
+                <span class="font-display text-4xl uppercase tracking-wider text-typo-dark">DIRECTORY.</span>
+                <button id="close-sosmed" class="text-sm font-sans font-semibold uppercase tracking-widest link-hover text-typo-dark">
+                    Tutup
+                </button>
             </div>
 
-            <div class="p-6 md:p-8">
-                <h3 class="text-2xl font-cyber text-white uppercase mb-2">> Network_Nodes</h3>
-                <p class="font-mono text-xs text-cyber-muted mb-8 border-b border-cyber-muted pb-2">Select transmission channel...</p>
+            <div class="flex-1 overflow-y-auto flex flex-col justify-center px-6 md:px-20 py-10 text-typo-dark">
+                <a href="https://www.tiktok.com/@koepipodjokraffa" target="_blank" class="text-4xl sm:text-5xl md:text-7xl font-display uppercase text-outline hover:text-typo-dark transition-all py-4 border-b border-typo-dark/10 flex justify-between items-end group">
+                    <span>TIKTOK</span>
+                    <span class="font-serif italic text-xl sm:text-2xl text-typo-accent opacity-0 group-hover:opacity-100 transition-opacity">Video</span>
+                </a>
 
-                <div class="flex flex-col gap-4 font-mono">
-                    <a href="https://www.tiktok.com/@koepipodjokraffa" target="_blank" class="cyber-btn flex items-center p-3 gap-4 text-cyber-cyan">
-                        <span class="text-xs uppercase w-8 text-center bg-cyber-cyan/20">TK</span>
-                        <span class="font-bold flex-1 text-sm tracking-widest">TIKTOK_NET</span>
-                    </a>
+                <a href="https://www.instagram.com/koepipodjokraffa" target="_blank" class="text-4xl sm:text-5xl md:text-7xl font-display uppercase text-outline hover:text-typo-dark transition-all py-4 border-b border-typo-dark/10 flex justify-between items-end group">
+                    <span>INSTAGRAM</span>
+                    <span class="font-serif italic text-xl sm:text-2xl text-typo-accent opacity-0 group-hover:opacity-100 transition-opacity">Visuals</span>
+                </a>
 
-                    <a href="https://www.instagram.com/koepipodjokraffa" target="_blank" class="cyber-btn flex items-center p-3 gap-4 border-cyber-magenta text-cyber-magenta shadow-none hover:shadow-neon-magenta hover:bg-cyber-magenta">
-                        <span class="text-xs uppercase w-8 text-center bg-cyber-magenta/20">IG</span>
-                        <span class="font-bold flex-1 text-sm tracking-widest">INSTAGRAM_NET</span>
-                    </a>
+                <a href="https://wa.me/6289625890539" target="_blank" class="text-4xl sm:text-5xl md:text-7xl font-display uppercase text-outline hover:text-typo-dark transition-all py-4 border-b border-typo-dark/10 flex justify-between items-end group">
+                    <span>WHATSAPP</span>
+                    <span class="font-serif italic text-xl sm:text-2xl text-typo-accent opacity-0 group-hover:opacity-100 transition-opacity">Chat</span>
+                </a>
 
-                    <a href="https://wa.me/6289625890539" target="_blank" class="cyber-btn flex items-center p-3 gap-4 border-[#00ff00] text-[#00ff00] shadow-none hover:shadow-[0_0_20px_#00ff00] hover:bg-[#00ff00]">
-                        <span class="text-xs uppercase w-8 text-center bg-[#00ff00]/20">WA</span>
-                        <span class="font-bold flex-1 text-sm tracking-widest">WHATSAPP_COMMS</span>
-                    </a>
-                </div>
+                <a href="https://gofood.link/a/SA8mEX3" target="_blank" class="text-4xl sm:text-5xl md:text-7xl font-display uppercase text-outline hover:text-typo-dark transition-all py-4 border-b border-typo-dark/10 flex justify-between items-end group">
+                    <span>GOFOOD</span>
+                    <span class="font-serif italic text-xl sm:text-2xl text-typo-accent opacity-0 group-hover:opacity-100 transition-opacity">Order</span>
+                </a>
+
+                <a href="https://shopee.co.id/universal-link/now-food/shop/22711684" target="_blank" class="text-4xl sm:text-5xl md:text-7xl font-display uppercase text-outline hover:text-typo-dark transition-all py-4 flex justify-between items-end group">
+                    <span>SHOPEEFOOD</span>
+                    <span class="font-serif italic text-xl sm:text-2xl text-typo-accent opacity-0 group-hover:opacity-100 transition-opacity">Order</span>
+                </a>
             </div>
         </div>
     </div>
@@ -367,7 +350,7 @@
     <!-- JAVASCRIPT LOGIC BUNDLE -->
     <script>
         // ==========================================
-        // 1. GLOBAL: LENIS SMOOTH SCROLL (Disable on Mobile for better native feel)
+        // 1. GLOBAL: LENIS SMOOTH SCROLL (Disable on Mobile)
         // ==========================================
         const isMobile = window.innerWidth < 768;
         let lenis;
@@ -478,7 +461,37 @@
         }
 
         // ==========================================
-        // 3. TYPOGRAPHY THEME: MENU LIST & FLOATING IMG
+        // 3. TEXT REVEAL LOGIC (FILOSOFI)
+        // ==========================================
+        const revealCont = document.getElementById('reveal-text-container');
+        const textToReveal = "DI KOEPI PODJOK RAFFA BUKAN CUMA SOAL RASA. MELAINKAN TAWA, KEBERSAMAAN, DAN CERITA. DI SINI KITA JADI NYATA.";
+        
+        let revealHTML = '';
+        const words = textToReveal.split(' ');
+        
+        words.forEach((word) => {
+            if(["RASA.", "TAWA,", "NYATA."].includes(word)) {
+                revealHTML += `<span class="inline-block overflow-hidden"><span class="rev-word inline-block translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] text-typo-accent font-serif italic lowercase">${word}</span></span> `;
+            } else if(["BUKAN", "MELAINKAN"].includes(word)) {
+                revealHTML += `<span class="inline-block overflow-hidden"><span class="rev-word inline-block translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] text-outline-white">${word}</span></span> `;
+            } else {
+                revealHTML += `<span class="inline-block overflow-hidden"><span class="rev-word inline-block translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">${word}</span></span> `;
+            }
+        });
+        revealCont.innerHTML = revealHTML;
+
+        const revWords = document.querySelectorAll('.rev-word');
+        window.addEventListener('scroll', () => {
+            const rect = revealCont.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.8) {
+                revWords.forEach((w, i) => {
+                    setTimeout(() => { w.style.transform = 'translateY(0)'; }, i * 40); 
+                });
+            }
+        });
+
+        // ==========================================
+        // 4. MENU LIST & FLOATING IMG
         // ==========================================
         const DATA_MENU = {
             "coffee": [
@@ -521,7 +534,6 @@
                     el.className = `menu-row flex flex-col md:flex-row justify-between items-start md:items-end py-8 md:py-12 cursor-pointer w-full relative z-10 opacity-0 translate-y-8 font-sans group`;
                     el.dataset.img = item.gambar;
 
-                    // Pricing font-black, Color hover for Desktop only via CSS logic above
                     el.innerHTML = `
                         <div class="flex flex-col pointer-events-none w-full md:w-auto">
                             <span class="text-xs font-bold uppercase tracking-widest text-typo-muted mb-2">0${index + 1} // ${item.desc}</span>
@@ -532,7 +544,6 @@
                         </div>
                     `;
 
-                    // Only attach floating image events if on Desktop
                     if(!isMobile) {
                         el.addEventListener('mouseenter', (e) => {
                             floatImg.src = e.currentTarget.dataset.img;
@@ -575,7 +586,7 @@
 
 
         // ==========================================
-        // 4. NEO-BRUTALISM THEME: TESTIMONIAL SLIDER
+        // 5. TESTIMONIAL SLIDER (BRUTALISM)
         // ==========================================
         const chatSlider = document.getElementById('chat-slider');
         let chatIndex = 0; const chatTotal = 3; 
@@ -585,7 +596,7 @@
         }, 4000); 
 
         // ==========================================
-        // 5. CYBERPUNK THEME: MODAL LOGIC
+        // 6. DIRECTORY MODAL LOGIC (TYPOGRAPHY)
         // ==========================================
         const openModal = (id) => {
             const el = document.getElementById(id);
